@@ -41,10 +41,10 @@ export default function BlogPage() {
                 {/* Page Header */}
                 <div className="text-center mb-16">
                     <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-5xl md:text-5xl font-montserrat">
-                        Insights from the Agent Vanguard
+                        Insights
                     </h1>
                     <p className="mt-6 max-w-3xl mx-auto md:text-xl text-l text-gray-600 dark:text-gray-300">
-                        Welcome to the Agent Vanguard blog. Discover the latest articles, insights, and updates on AI tools and technology.
+                        Discover the latest updates on AI tools and technology.
                     </p>
                 </div>
 
