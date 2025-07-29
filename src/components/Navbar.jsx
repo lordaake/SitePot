@@ -21,7 +21,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
                         <img
                             src={logo}
                             alt="Agent Vanguard Logo"
-                            className="h-11 w-11 rounded-full border-2 border-white dark:border-purple-900 transition-transform hover:scale-110"
+                            className="h-8 w-8 rounded-full border-2 border-white dark:border-purple-900 transition-transform hover:scale-110"
                             draggable={false}
                         />
                     </Link>
