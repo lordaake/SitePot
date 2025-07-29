@@ -21,6 +21,7 @@ const HeroSection = ({ onExploreClick, onTryGameClick }) => {
                         radial-gradient(ellipse at center, rgba(0,0,0,0.2), rgba(0,0,0,0.8)),
                         /* Background image */
                         url('/HeroBackground.png')
+
                     `
                 }}
                 aria-hidden="true"
@@ -75,7 +76,7 @@ const HeroSection = ({ onExploreClick, onTryGameClick }) => {
                             // Light mode: solid black. Dark mode: semi-transparent with purple glow.
                             className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 
                                        bg-gray-900 text-white hover:bg-gray-700
-                                       dark:bg-gray-900 dark:bg-opacity-75 dark:hover:bg-opacity-90 dark:hover:shadow-[0_0_20px_rgba(192,132,252,0.5)]"
+                                       dark:bg-purple-900 dark:bg-opacity-75 dark:hover:bg-opacity-90 dark:hover:shadow-[0_0_20px_rgba(192,132,252,0.5)]"
                         >
                             <ArrowDown className="w-5 h-5 text-red-500" />
                             Explore Tools
