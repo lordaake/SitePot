@@ -1,0 +1,31 @@
+# BEGIN existing redirects (KEEP THESE IF YOU STILL NEED THEM)
+RewriteOptions inherit
+RewriteEngine on
+
+# Redirect adularia.xyz to https://agentvanguard.com
+RewriteCond %{HTTP_HOST} ^adularia\.xyz$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.adularia\.xyz$
+RewriteRule ^/?$ "https\:\/\/agentvanguard\.com\/" [R=301,L]
+
+# Redirect other requests to www.agentvanguard.com (This rule seems a bit broad, consider its implications)
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^/?$ "https\:\/\/www\.agentvanguard\.com\/" [R=301,L]
+# END existing redirects
+
+
+# BEGIN React app client-side routing rules
+# These rules ensure that all non-file/non-directory requests are served by index.html
+# This is crucial for React Router and other client-side routing libraries
+
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# If the requested path is not a file
+RewriteCond %{REQUEST_FILENAME} !-f
+# And if the requested path is not a directory
+RewriteCond %{REQUEST_FILENAME} !-d
+# Then rewrite the request to index.html and append the original query string
+RewriteRule ^ index.html [QSA,L]
+
+# END React app client-side routing rules
