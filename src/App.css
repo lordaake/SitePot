@@ -117,126 +117,165 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
 
-/* Base styles for game grid and cells */
-.game-grid {
-  display: grid;
-  gap: 2px;
-  max-width: 600px;
-  margin: 0 auto;
-  aspect-ratio: 1 / 1;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  border-radius: 15px;
-}
+@layer utilities {
 
-.cell {
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  min-height: 40px;
-}
-
-/* Animations */
-@keyframes screenShake {
-  0% {
-    transform: translate(1px, 1px);
+  /* --- Light/Dark Background --- */
+  .cosmic-background {
+    background: linear-gradient(180deg, theme(colors.white), theme(colors.gray.100));
   }
 
-  10% {
-    transform: translate(-1px, -2px);
+  .dark .cosmic-background {
+    background: linear-gradient(245deg, #0f0c29, #302b63, #24243e, #4c2d73, #6a329f);
+    background-size: 300% 300%;
+    animation: gradient-animation 15s ease-in-out infinite alternate;
   }
 
-  20% {
-    transform: translate(-3px, 0px);
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    100% {
+      background-position: 100% 50%;
+    }
   }
 
-  30% {
-    transform: translate(3px, 2px);
+  /* --- Light/Dark Starfield --- */
+  #stars,
+  #stars2,
+  #stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    animation: animStar 50s linear infinite;
   }
 
-  40% {
-    transform: translate(1px, -1px);
+  #stars {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><circle fill="%234A5568" cx="200" cy="300" r="1"/><circle fill="%234A5568" cx="800" cy="600" r="1"/><circle fill="%234A5568" cx="1200" cy="100" r="1"/></svg>');
   }
 
-  50% {
-    transform: translate(-1px, 2px);
+  #stars2 {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><circle fill="%232D3748" cx="400" cy="200" r="2"/><circle fill="%232D3748" cx="1000" cy="500" r="2"/></svg>');
+    animation-duration: 100s;
   }
 
-  60% {
-    transform: translate(-3px, 1px);
+  #stars3 {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><circle fill="%231A202C" cx="600" cy="400" r="3"/><circle fill="%231A202C" cx="1300" cy="650" r="3"/></svg>');
+    animation-duration: 150s;
   }
 
-  70% {
-    transform: translate(3px, 1px);
+  .dark #stars {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><circle fill="%23FFFFFF" cx="200" cy="300" r="1"/><circle fill="%23FFFFFF" cx="800" cy="600" r="1"/><circle fill="%23FFFFFF" cx="1200" cy="100" r="1"/></svg>');
   }
 
-  80% {
-    transform: translate(-1px, -1px);
+  .dark #stars2 {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><circle fill="%23FFFFFF" cx="400" cy="200" r="2"/><circle fill="%23FFFFFF" cx="1000" cy="500" r="2"/></svg>');
   }
 
-  90% {
-    transform: translate(1px, 2px);
+  .dark #stars3 {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><circle fill="%23FFFFFF" cx="600" cy="400" r="3"/><circle fill="%23FFFFFF" cx="1300" cy="650" r="3"/></svg>');
   }
 
-  100% {
-    transform: translate(0, 0);
-  }
-}
+  @keyframes animStar {
+    from {
+      transform: translateY(0);
+    }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.05);
+    to {
+      transform: translateY(-900px);
+    }
   }
 
-  100% {
-    transform: scale(1);
-  }
-}
 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
+  /* --- Entrance Animations --- */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
 
-  50% {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
-  }
-
-  100% {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-}
-
-@keyframes dangerPulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  50% {
-    transform: scale(1.1);
-    opacity: 0.7;
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(60px);
+    }
 
-/* Other styles (add more as needed) */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 0;
+  }
+
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 0;
+  }
+
+  /* Animation delays */
+  .animation-delay-\[400ms\] {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-\[550ms\] {
+    animation-delay: 550ms;
+  }
+
+  .animation-delay-\[700ms\] {
+    animation-delay: 700ms;
+  }
+
+  .animation-delay-\[800ms\] {
+    animation-delay: 800ms;
+  }
+
+  .animation-delay-\[900ms\] {
+    animation-delay: 900ms;
+  }
+
+  .animation-delay-\[1100ms\] {
+    animation-delay: 1100ms;
+  }
+
+  .animation-delay-\[1200ms\] {
+    animation-delay: 1200ms;
+  }
 }

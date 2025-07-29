@@ -51,18 +51,12 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
                             Tools
                         </a>
                         {/* --- NEW BLOG LINK (Desktop) --- */}
-                        <Link
+                        {/* <Link
                             to="/blog"
                             className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 px-3 py-1 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/20"
                         >
                             Blog
-                        </Link>
-                        <a
-                            href="/#about"
-                            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 px-3 py-1 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/20"
-                        >
-                            About
-                        </a>
+                        </Link> */}
                         <button
                             onClick={toggleDarkMode}
                             aria-label="Toggle dark mode"
@@ -106,20 +100,13 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
                             Tools
                         </a>
                         {/* --- NEW BLOG LINK (Mobile) --- */}
-                        <Link
+                        {/* <Link
                             to="/blog"
                             className="text-lg text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 py-2"
                             onClick={closeMenu}
                         >
                             Blog
-                        </Link>
-                        <a
-                            href="/#about"
-                            className="text-lg text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 py-2"
-                            onClick={closeMenu}
-                        >
-                            About
-                        </a>
+                        </Link> */}
                         {/* --- COMPLETE DARK MODE TOGGLE FOR MOBILE MENU --- */}
                         <button
                             onClick={() => {
