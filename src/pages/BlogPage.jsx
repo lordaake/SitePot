@@ -44,7 +44,7 @@ export default function BlogPage() {
                         Insights
                     </h1>
                     <p className="mt-6 max-w-3xl mx-auto md:text-xl text-l text-gray-600 dark:text-gray-300">
-                        Discover the latest articles, insights, and updates on AI tools and technology.
+                        Discover the latest updates on AI tools and technology.
                     </p>
                 </div>
 
