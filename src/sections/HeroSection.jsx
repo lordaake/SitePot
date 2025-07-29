@@ -60,7 +60,7 @@ const HeroSection = ({ onExploreClick, onTryGameClick }) => {
                         <p
                             className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-8 text-gray-600 dark:text-gray-300"
                             // Apply text shadow conditionally for dark mode
-                            style={{ textShadow: '1px 1px 1px rgba(0, 0, 0, 0.3)' }}
+                            style={{ textShadow: '1px 1px 1px rgba(0, 0, 0, 0.2)' }}
                         >
                             <strong>This page is just getting started.</strong><br />
                             We’re building a hub for the best AI agent tools, with fresh features coming soon.
