@@ -592,5 +592,11 @@ export const domains = [
     category: ["E-commerce", "Marketplace", "Home & Garden"],
     description: "Perfect for an online marketplace or rental platform focused on furniture sharing, resale, or rental services, tapping into circular economy and sustainable living trends.",
     forSale: true
+  },
+  {
+    name: "imagegain.com",
+    category: ["AI & Technology", "Digital Marketing", "Creative Design", "SaaS"],
+    description: "Perfect for an AI-powered platform offering image enhancement, generation, or analytics tools to boost marketing visuals, personalize content, and optimize creative workflows for businesses.",
+    forSale: true
   }
 ];
