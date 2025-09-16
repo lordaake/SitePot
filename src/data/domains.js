@@ -574,5 +574,23 @@ export const domains = [
     category: ["Miscellaneous", "Entertainment & Media"],
     description: "An expressive domain for a vocal music project, howling-themed game, or cultural blog on wailing traditions, offering content on voice techniques and emotional sound expressions.",
     forSale: true
+  },
+  {
+    name: "pamman.com",
+    category: ["Miscellaneous", "Brandable"],
+    description: "A short, memorable brandable domain well suited for a creative agency, personal portfolio, or tech startup aiming to build a unique identity around the name 'Pamman'.",
+    forSale: true
+  },
+  {
+    name: "readsolution.com",
+    category: ["Business", "Technology", "SaaS"],
+    description: "Ideal for a SaaS platform, consulting service, or educational technology company delivering smart data reading, document management, or problem-solving software solutions.",
+    forSale: true
+  },
+  {
+    name: "sharefurniture.com",
+    category: ["E-commerce", "Marketplace", "Home & Garden"],
+    description: "Perfect for an online marketplace or rental platform focused on furniture sharing, resale, or rental services, tapping into circular economy and sustainable living trends.",
+    forSale: true
   }
 ];
