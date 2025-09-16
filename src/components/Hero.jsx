@@ -24,7 +24,7 @@ function Hero() {
                 </div>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-extrabold text-yellow-300 mb-6 drop-shadow-[0_0_8px_rgba(252,211,77,0.9)]">
+            <h2 className="text-3xl md:text-6xl font-extrabold text-yellow-300 mb-6 drop-shadow-[0_0_8px_rgba(252,211,77,0.9)] pl-6 pr-6">
                 Search the Golden Pot
             </h2>
 
