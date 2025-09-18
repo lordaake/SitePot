@@ -50,7 +50,7 @@ function BlogPost() {
           <div className="flex items-center gap-2"><User className="w-4 h-4 text-lepre-green" /><span>By {post.author}</span></div>
         </div>
 
-        <img src={post.image} alt={post.title} className="w-full max-h-[450px] object-cover rounded-xl mb-8 shadow-lg hover:scale-105 transition-transform duration-300" />
+        <img src={post.image} alt={post.title} className="w-full max-h-[350px] object-cover rounded-xl mb-8 shadow-lg hover:scale-105 transition-transform duration-300" />
 
         <div className="prose prose-lg max-w-none text-lepre-text-primary">
           {post.content.map((block, index) => {

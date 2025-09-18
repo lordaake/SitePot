@@ -23,7 +23,7 @@ function Blog() {
             <img
               src={post.image}
               alt={post.title}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="p-6 flex flex-col flex-grow">
               <span className="bg-lepre-green/20 text-lepre-green text-xs font-semibold px-3 py-1 rounded-full mb-4 self-start tracking-wide">
