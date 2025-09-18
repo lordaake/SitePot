@@ -85,7 +85,7 @@ function App() {
     <div className="container mx-auto px-4">
       <Hero />
       <DomainList />
-      <ContactSection />
+      {/* <ContactSection /> */}
     </div>
   );
 
@@ -311,7 +311,7 @@ function DomainCard({ domain }) {
                     {(Array.isArray(domain.category) ? domain.category : [domain.category]).map((cat) => (
                         <span
                             key={cat}
-                            className="bg-lepre-gold/20 text-lepre-gold text-xs font-semibold px-3 py-1 rounded-full border border-lepre-gold/60"
+                            className="bg-lepre-gold/20 black text-xs font-semibold px-3 py-1 rounded-full border border-lepre-gold/60"
                         >
                             {cat}
                         </span>
@@ -381,8 +381,8 @@ function DomainList() {
     }, [searchTerm, selectedCategory]);
 
     return (
-        <section id="domains" className="py-16 bg-lepre-light-gray rounded-lg shadow-lepre-soft-shadow p-8 mt-8">
-            <h2 className="text-4xl font-bold text-lepre-gold mb-8 border-b-2 border-lepre-green inline-block pb-2">Explore Our Collection</h2>
+        <section id="domains" className="py-16 bg-lepre-light-gray rounded-lg shadow-lepre-soft-shadow md:p-8 mt-8">
+            <h2 className="text-4xl font-bold text text-black mb-8 border-b-2 border-lepre-green inline-block pb-2">Explore Our Collection</h2>
             <div className="flex flex-col sm:flex-row gap-6 mb-8 items-center justify-between">
                 <div className="relative w-full sm:w-2/3">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lepre-green w-6 h-6" />
@@ -453,31 +453,50 @@ function Hero() {
     return (
         <section
             id="hero"
-            className="mt-8 py-14 text-center relative flex flex-col items-center bg-lepre-light-gray rounded-lg shadow-lepre-soft-shadow border border-lepre-gold-dark"
+            className="mt-12 py-16 px-6 md:px-12 relative flex flex-col items-center bg-gradient-to-br from-lepre-light-gray via-lepre-white to-lepre-light-gray rounded-3xl shadow-lg border border-lepre-gold-dark max-w-5xl mx-auto"
         >
-            <div className="relative mb-8 flex justify-center items-center">
-                {/* Logo will be handled manually by the user */}
-                <div className="h-64 w-64 flex items-center justify-center bg-lepre-gold rounded-full shadow-lepre-gold-glow animate-lepre-float">
-                    <span className="text-6xl font-extrabold text-lepre-white opacity-90 select-none">
-                        .COM
-                    </span>
+            {/* Golden Pot with Rainbow Glow */}
+            <div className="relative h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 rounded-full bg-gradient-to-tr from-yellow-400 via-yellow-300 to-yellow-500 shadow-[0_0_25px_rgba(255,215,0,0.6)] animate-lepre-float flex items-center justify-center overflow-visible">
+                {/* Rainbow Glow Ring */}
+                <span
+                    className="absolute inset-0 rounded-full pointer-events-none animate-spin-slow"
+                    style={{
+                        boxShadow:
+                            '0 0 40px 10px rgba(255,0,255,0.4), 0 0 80px 25px rgba(0,255,255,0.3), 0 0 120px 40px rgba(0,255,0,0.2)'
+                    }}
+                ></span>
+
+                {/* Perfect-fit Golden ring around logo */}
+                <div className="h-full w-full rounded-full p-2 bg-gradient-to-tr from-yellow-300 via-yellow-400 to-yellow-500 shadow-lg shadow-yellow-400/60 flex items-center justify-center">
+                    <img
+                        src="/logo.png"
+                        alt="Logo"
+                        className="h-full w-full select-none rounded-full object-contain"
+                        draggable={false}
+                    />
                 </div>
             </div>
 
-            <h2 className="text-3xl md:text-6xl font-extrabold text-lepre-text-primary mb-6 pl-6 pr-6 drop-shadow-md">
-                Search the Golden Pot
+            {/* Main Title */}
+            <h2
+                className="text-3xl sm:text-4xl md:text-7xl font-extrabold text-lepre-text-primary/90 mb-8 tracking-wide text-center px-4"
+                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
+            >
+                Search the <span className="text-lepre-gold underline decoration-lepre-green decoration-4 underline-offset-8">Golden Pot</span>
             </h2>
 
-            <p className="text-xl max-w-2xl mx-auto text-lepre-text-secondary font-semibold mb-10 leading-relaxed mr-4 ml-4">
-                Find your <span className="font-extrabold text-lepre-gold">.com</span> domain from our collection.
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-lepre-text-secondary font-semibold mb-12 leading-relaxed text-center px-4">
+                Find your <span className="font-extrabold text-lepre-gold">.com</span> domain from our curated collection and shine online.
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-16 text-md font-semibold">
-                <p className="flex items-center text-lepre-text-primary">
+            {/* Features */}
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 text-md font-semibold max-w-3xl px-4">
+                <p className="flex items-center text-lepre-text-primary whitespace-nowrap text-base sm:text-lg">
                     <Sparkles className="w-7 h-7 mr-3 text-lepre-gold" /> Each domain has been handpicked
                 </p>
-                <p className="flex items-center text-lepre-gold">
-                    <Globe className="w-7 h-7 mr-3 text-lepre-green" /> Visit domain URL to make an offer
+                <p className="flex items-center text-lepre-green whitespace-nowrap text-base sm:text-lg">
+                    <Globe className="w-7 h-7 mr-3 text-lepre-green-dark" /> Visit domain URL to make an offer
                 </p>
             </div>
         </section>
@@ -485,8 +504,6 @@ function Hero() {
 }
 
 export default Hero;
-
-
 
 /* ==== FILE: src\components\Navbar.jsx ==== */
 
@@ -6145,7 +6162,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>
 );
 
-
 /* ==== FILE: src\pages\Home.jsx ==== */
 
 
@@ -6153,174 +6169,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 /* ==== FILE: tailwind.config.js ==== */
 
 // tailwind.config.js
-
-import typography from '@tailwindcss/typography';
-import animate from 'tailwindcss-animate';
-
-/** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: ["class"],
-    content: [
-        "./index.html",
-        "./src/**/*.{js,ts,jsx,tsx}",
-    ],
-    safelist: [
-        // Existing safelisted classes
-        'bg-lepre-white',
-        'bg-lepre-light-gray',
-        'bg-lepre-mid-gray',
-        'bg-lepre-gold',
-        'bg-lepre-gold-dark',
-        'bg-lepre-green',
-        'bg-lepre-green-dark',
-        'text-lepre-text-primary',
-        'text-lepre-text-secondary',
-        'text-lepre-text-tertiary',
-        'text-lepre-gold',
-        'text-lepre-white',
-        'border-lepre-gold-dark',
-        'border-lepre-mid-gray',
-        'shadow-lepre-soft-shadow',
-        'shadow-lepre-gold-glow',
-        'animate-lepre-float',
-        // New safelisted classes for neon and base colors
-        'bg-base-dark',
-        'bg-base-light',
-        'text-text-primary',
-        'text-text-secondary',
-        'text-text-tertiary',
-        'bg-neon-pink',
-        'text-neon-pink',
-        'bg-neon-green',
-        'text-neon-green',
-        'bg-neon-blue',
-        'text-neon-blue',
-        'bg-neon-orange',
-        'text-neon-orange',
-        'bg-neon-yellow',
-        'text-neon-yellow',
-        'shadow-neon-blue/20',
-        'shadow-neon-pink/40',
-        'border-neon-blue/30',
-        'border-neon-pink/20',
-        'border-neon-pink/60',
-        'bg-neon-green/20',
-        'bg-neon-pink/10',
-        'bg-neon-pink/25',
-        'text-neon-green/80',
-        'text-neon-green/70',
-        'text-neon-green/90',
-        'shadow-purple-900/30',
-        'shadow-yellow-500/70',
-        'bg-gradient-to-r from-yellow-400 via-neon-orange to-yellow-500',
-    ],
-    theme: {
-        container: {
-            center: true,
-            padding: "2rem",
-            screens: {
-                "2xl": "1400px",
-            },
-        },
-        extend: {
-            colors: {
-                // Core UI color references to CSS variables
-                border: "hsl(var(--border))",
-                input: "hsl(var(--input))",
-                ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
-                foreground: "hsl(var(--foreground))",
-                primary: {
-                    DEFAULT: "hsl(var(--primary))",
-                    foreground: "hsl(var(--primary-foreground))",
-                },
-                secondary: {
-                    DEFAULT: "hsl(var(--secondary))",
-                    foreground: "hsl(var(--secondary-foreground))",
-                },
-                destructive: {
-                    DEFAULT: "hsl(var(--destructive))",
-                    foreground: "hsl(var(--destructive-foreground))",
-                },
-                muted: {
-                    DEFAULT: "hsl(var(--muted))",
-                    foreground: "hsl(var(--muted-foreground))",
-                },
-                accent: {
-                    DEFAULT: "hsl(var(--accent))",
-                    foreground: "hsl(var(--accent-foreground))",
-                },
-                popover: {
-                    DEFAULT: "hsl(var(--popover))",
-                    foreground: "hsl(var(--popover-foreground))",
-                },
-                card: {
-                    DEFAULT: "hsl(var(--card))",
-                    foreground: "hsl(var(--card-foreground))",
-                },
-
-                // Existing custom named colors
-                "lepre-white": "#FDFDFD",
-                "lepre-light-gray": "#F5F5F5",
-                "lepre-mid-gray": "#EAEAEA",
-                "lepre-text-primary": "#333333",
-                "lepre-text-secondary": "#555555",
-                "lepre-text-tertiary": "#777777",
-                "lepre-gold": "#FFD700",
-                "lepre-gold-dark": "#CCAA00",
-                "lepre-green": "#3CB371",
-                "lepre-green-dark": "#2E8B57",
-                "lepre-accent-brown": "#8B4513",
-
-                // New neon and base colors for blog components
-                "base-dark": "#1A1A1A",  // Dark background for blog
-                "base-light": "#2D2D2D", // Slightly lighter for cards
-                "text-primary": "#FFFFFF", // White text for dark backgrounds
-                "text-secondary": "#D1D1D1", // Light gray for subtitles
-                "text-tertiary": "#A1A1A1", // Medium gray for metadata
-                "neon-pink": "#FF00FF",
-                "neon-green": "#39FF14",
-                "neon-blue": "#00FFFF",
-                "neon-orange": "#FF6700",
-                "neon-yellow": "#FFFF00",
-            },
-            backgroundImage: {
-                "lepre-gold-gradient": "linear-gradient(to right, #FFD700, #CCAA00)",
-                "lepre-green-gradient": "linear-gradient(to right, #3CB371, #2E8B57)",
-            },
-            boxShadow: {
-                "lepre-soft-shadow": "0 4px 15px rgba(0, 0, 0, 0.1)",
-                "lepre-gold-glow": "0 0 20px rgba(255, 215, 0, 0.4)",
-                "lepre-green-glow": "0 0 15px rgba(60, 179, 113, 0.3)",
-            },
-            borderRadius: {
-                lg: "var(--radius)",
-                md: "calc(var(--radius) - 2px)",
-                sm: "calc(var(--radius) - 4px)",
-            },
-            keyframes: {
-                "accordion-down": {
-                    from: { height: "0" },
-                    to: { height: "var(--radix-accordion-content-height)" },
-                },
-                "accordion-up": {
-                    from: { height: "var(--radix-accordion-content-height)" },
-                    to: { height: "0" },
-                },
-                float: {
-                    "0%, 100%": { transform: "translateY(0px)" },
-                    "50%": { transform: "translateY(-6px)" },
-                },
-            },
-            animation: {
-                "accordion-down": "accordion-down 0.2s ease-out",
-                "accordion-up": "accordion-up 0.2s ease-out",
-                "lepre-float": "float 3.5s ease-in-out infinite",
-            },
-        },
-    },
-    plugins: [typography, animate],
+    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 };
+
 
 /* ==== FILE: vite.config.js ==== */
 
