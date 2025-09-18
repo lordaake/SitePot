@@ -11,13 +11,11 @@ const staticRoutes = [
 ];
 
 // --- DYNAMIC ROUTES ---
-// This is where you would fetch dynamic data, for example, from an API or a local file.
-// For now, we will use a placeholder for your blog posts.
-// Replace these with your actual blog post slugs/IDs.
+// This array should list the ID of each post from your 'src/data/blogData.js' file.
+// Manually add a new object here whenever you create a new blog post.
 const dynamicBlogPosts = [
-  { id: 'example-post-1' },
-  { id: 'example-post-2' },
-  // Add more blog posts here as your site grows
+  { id: 1 }, // This corresponds to your "SitePot Has Launched" post.
+  // When you add a new post with id: 2, add '{ id: 2 },' on the next line.
 ];
 // --- END DYNAMIC ROUTES ---
 
