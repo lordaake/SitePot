@@ -9,7 +9,6 @@ import DomainList from './components/DomainList';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
-import logo from './assets/logo.png';
 import ContactSection from './components/ContactSection';
 
 // This component helps to scroll to the top on route changes
@@ -27,18 +26,14 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const img = new Image();
-    img.src = logo;
-    const handleLoad = () => setIsLoading(false);
-    img.onload = handleLoad;
-    img.onerror = handleLoad; // Continue even if logo fails
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-base-dark">
-        <div className="text-2xl font-bold text-text-primary animate-pulse">
-          Conjuring the magic...
+      <div className="flex items-center justify-center h-screen bg-lepre-white">
+        <div className="text-2xl font-bold text-lepre-text-primary animate-pulse">
+          Gathering the luck...
         </div>
       </div>
     );
@@ -48,12 +43,12 @@ function App() {
     <div className="container mx-auto px-4">
       <Hero />
       <DomainList />
-      <ContactSection />
+      {/* <ContactSection /> */}
     </div>
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-base-dark text-text-primary">
+    <div className="flex flex-col min-h-screen bg-lepre-white text-lepre-text-primary">
       <ScrollToTop />
       <Navbar />
       <main className="flex-grow">
@@ -69,3 +64,4 @@ function App() {
 }
 
 export default App;
+

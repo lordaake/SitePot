@@ -1,9 +1,13 @@
+// src/components/ContactSection.jsx
 
 import React from 'react';
 
 function ContactSection() {
     return (
-        <section id="contact" className="bg-base-light rounded-3xl max-w-4xl mx-auto p-12 md:p-16 text-center border border-neon-blue/30 shadow-xl shadow-neon-blue/20 mt-24 mb-24 transform hover:scale-105 transition-all duration-500 relative overflow-hidden group">
+        <section
+            id="contact"
+            className="bg-base-light rounded-3xl max-w-4xl mx-auto p-12 md:p-16 text-center border border-neon-blue/30 shadow-xl shadow-neon-blue/20 mt-24 mb-24 transform hover:scale-105 transition-all duration-500 relative overflow-hidden group hover:bg-gradient-to-br from-base-light to-lepre-gold/10"
+        >
             {/* Decorative background elements */}
             <div className="absolute top-0 left-0 w-24 h-24 bg-neon-pink/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-xl group-hover:scale-150 transition-transform duration-500"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-neon-green/10 rounded-full translate-x-1/2 translate-y-1/2 blur-xl group-hover:scale-150 transition-transform duration-500"></div>
@@ -16,7 +20,7 @@ function ContactSection() {
             </p>
             <a
                 href="mailto:ramlarssondigital@proton.me"
-                className="inline-block bg-neon-orange text-base-dark font-bold rounded-full px-12 py-4 shadow-lg shadow-neon-orange/40 hover:shadow-neon-yellow/60 hover:scale-110 transform transition duration-300 text-lg tracking-wide uppercase"
+                className="inline-block bg-neon-orange text-base-dark font-bold rounded-full px-12 py-4 shadow-lg shadow-neon-orange/40 hover:shadow-neon-yellow/60 hover:scale-110 transform transition duration-300 text-lg tracking-wide uppercase hover:bg-neon-yellow"
             >
                 Contact Us
             </a>

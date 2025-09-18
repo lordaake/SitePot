@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+/* If you use CSS variables for colors, define them here */
+:root {
+    --lepre-gold: 51 100% 50%;
+    --lepre-gold-dark: 51 90% 40%;
+    --lepre-green: 147 48% 49%;
+    --lepre-green-dark: 147 38% 37%;
+}

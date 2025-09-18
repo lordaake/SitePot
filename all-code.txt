@@ -2,22 +2,24 @@
 
 /* ==== FILE: eslint.config.js ==== */
 
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
   { ignores: ['dist'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        // Add globals.node if needed for any Node.js-specific code
+      },
       parserOptions: {
-        ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
-        sourceType: 'module',
       },
     },
     plugins: {
@@ -34,8 +36,7 @@ export default [
       ],
     },
   },
-]
-
+];
 
 /* ==== FILE: src\App.jsx ==== */
 
@@ -50,7 +51,6 @@ import DomainList from './components/DomainList';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
-import logo from './assets/logo.png';
 import ContactSection from './components/ContactSection';
 
 // This component helps to scroll to the top on route changes
@@ -68,18 +68,14 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const img = new Image();
-    img.src = logo;
-    const handleLoad = () => setIsLoading(false);
-    img.onload = handleLoad;
-    img.onerror = handleLoad; // Continue even if logo fails
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-base-dark">
-        <div className="text-2xl font-bold text-text-primary animate-pulse">
-          Conjuring the magic...
+      <div className="flex items-center justify-center h-screen bg-lepre-white">
+        <div className="text-2xl font-bold text-lepre-text-primary animate-pulse">
+          Gathering the luck...
         </div>
       </div>
     );
@@ -94,7 +90,7 @@ function App() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-dark-purple text-white magic-bg">
+    <div className="flex flex-col min-h-screen bg-lepre-white text-lepre-text-primary">
       <ScrollToTop />
       <Navbar />
       <main className="flex-grow">
@@ -112,44 +108,59 @@ function App() {
 export default App;
 
 
+
 /* ==== FILE: src\components\Blog.jsx ==== */
 
 // src/components/Blog.jsx
 
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../data/blogData'; // Correct import path
+import { blogPosts } from '../data/blogData';
 
 function Blog() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 bg-base-dark min-h-screen text-text-primary">
       <section className="text-center mb-16">
-        <h2 className="text-5xl font-extrabold text-neon-pink mb-4 drop-shadow-[0_0_8px_rgba(255,170,255,0.7)]">
+        <h2 className="text-5xl font-extrabold text-neon-pink mb-4 drop-shadow-[0_0_12px_rgba(255,0,255,0.8)]">
           Domain Insights
         </h2>
-        <p className="text-xl text-neon-green/90 max-w-3xl mx-auto">
+        <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
           Expert strategies, trends, and tutorials for choosing, investing in, and maximizing the value of premium domains.
         </p>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {blogPosts.map(post => (
-          <div key={post.id} className="bg-black/40 rounded-2xl shadow-lg shadow-purple-900/40 hover:shadow-neon-pink/30 transition-all duration-300 overflow-hidden border border-neon-pink/20 flex flex-col hover:-translate-y-1">
-            <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+          <div
+            key={post.id}
+            className="bg-base-light rounded-2xl shadow-xl shadow-neon-blue/20 hover:shadow-neon-pink/40 transition-all duration-500 overflow-hidden border border-neon-blue/30 flex flex-col hover:-translate-y-2 transform group hover:bg-gradient-to-br from-base-dark to-lepre-gold/10"
+          >
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+            />
             <div className="p-6 flex flex-col flex-grow">
-              <span className="bg-neon-pink/20 text-neon-pink text-xs font-semibold px-3 py-1 rounded-full mb-4 self-start">
+              <span className="bg-neon-green/20 text-neon-green text-xs font-semibold px-3 py-1 rounded-full mb-4 self-start tracking-wide">
                 {post.category}
               </span>
-              <h3 className="text-xl font-bold text-yellow-300 mb-3 flex-grow">{post.title}</h3>
-              <div className="flex items-center text-neon-green/70 text-sm mt-auto mb-4">
-                <Calendar className="w-4 h-4 mr-1.5" /> {post.date}
-                <Clock className="w-4 h-4 ml-4 mr-1.5" /> {post.readTime}
+              <h3 className="text-2xl font-bold text-text-primary mb-3 flex-grow leading-tight group-hover:text-neon-yellow transition-colors duration-300">{post.title}</h3>
+              <div className="flex items-center text-text-tertiary text-sm mt-auto mb-4 space-x-4">
+                <div className="flex items-center">
+                  <Calendar className="w-4 h-4 mr-2 text-neon-blue" /> {post.date}
+                </div>
+                <div className="flex items-center">
+                  <Clock className="w-4 h-4 mr-2 text-neon-blue" /> {post.readTime}
+                </div>
               </div>
-              <p className="text-neon-green/80 text-sm mb-6 h-20 overflow-hidden text-ellipsis">
+              <p className="text-text-secondary text-base mb-6 h-20 overflow-hidden leading-relaxed">
                 {post.content[0].text.substring(0, 120)}...
               </p>
-              <Link to={`/blog/${post.id}`} className="mt-auto inline-flex items-center text-neon-orange hover:text-yellow-300 font-bold self-start">
-                Read More <ArrowRight className="w-4 h-4 ml-2" />
+              <Link
+                to={`/blog/${post.id}`}
+                className="mt-auto inline-flex items-center text-neon-orange hover:text-neon-yellow font-bold self-start text-lg group-hover:translate-x-1 transition-transform duration-300"
+              >
+                Read More <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </div>
           </div>
@@ -167,7 +178,7 @@ export default Blog;
 
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, Clock, ArrowLeft, Frown } from 'lucide-react';
-import { blogPosts } from '../data/blogData'; // Correct import path
+import { blogPosts } from '../data/blogData';
 
 function BlogPost() {
   const { id } = useParams();
@@ -175,15 +186,15 @@ function BlogPost() {
 
   if (!post) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center flex flex-col items-center justify-center">
+      <div className="container mx-auto px-4 py-16 text-center flex flex-col items-center justify-center bg-base-dark text-text-primary">
         <Frown className="w-24 h-24 text-neon-pink mx-auto mb-6 animate-pulse" />
-        <h1 className="text-5xl font-extrabold text-yellow-300 mb-4">404 - Spell Not Found</h1>
+        <h1 className="text-5xl font-extrabold text-neon-yellow mb-4">404 - Spell Not Found</h1>
         <p className="text-lg text-neon-green/80 mb-8 max-w-md mx-auto">
           The ancient scroll you seek has vanished into the ether.
         </p>
         <Link
           to="/blog"
-          className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-yellow-400 via-neon-orange to-yellow-500 text-purple-900 font-extrabold rounded-xl shadow-lg hover:shadow-yellow-500/70 hover:scale-105 transform transition"
+          className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-neon-yellow via-neon-orange to-neon-yellow text-base-dark font-extrabold rounded-xl shadow-lg hover:shadow-neon-yellow/70 hover:scale-105 transform transition"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           Return to the Library
@@ -193,10 +204,10 @@ function BlogPost() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <article className="max-w-4xl mx-auto bg-black/30 rounded-2xl shadow-lg shadow-purple-900/30 p-6 sm:p-10 border border-neon-pink/20">
+    <div className="container mx-auto px-4 py-12 bg-base-dark">
+      <article className="max-w-4xl mx-auto bg-base-light/30 rounded-2xl shadow-lg shadow-neon-pink/30 p-6 sm:p-10 border border-neon-pink/20">
         <div className="mb-8">
-          <Link to="/blog" className="inline-flex items-center text-neon-orange hover:text-yellow-200 font-bold transition-colors">
+          <Link to="/blog" className="inline-flex items-center text-neon-orange hover:text-neon-yellow font-bold transition-colors">
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back to All Spells
           </Link>
@@ -206,7 +217,7 @@ function BlogPost() {
           {post.category}
         </span>
 
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-300 mb-6 leading-tight drop-shadow-[0_0_8px_rgba(252,211,77,0.8)]">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-neon-yellow mb-6 leading-tight drop-shadow-[0_0_8px_rgba(252,211,77,0.8)]">
           {post.title}
         </h1>
 
@@ -216,11 +227,11 @@ function BlogPost() {
           <div className="flex items-center gap-2"><User className="w-4 h-4 text-neon-pink" /><span>By {post.author}</span></div>
         </div>
 
-        <img src={post.image} alt={post.title} className="w-full max-h-[450px] object-cover rounded-xl mb-8 shadow-lg" />
+        <img src={post.image} alt={post.title} className="w-full max-h-[450px] object-cover rounded-xl mb-8 shadow-lg hover:scale-105 transition-transform duration-300" />
 
         <div className="prose prose-lg max-w-none 
                         prose-p:text-neon-green/90 
-                        prose-headings:text-yellow-300 
+                        prose-headings:text-neon-yellow 
                         prose-strong:text-white 
                         prose-a:text-neon-pink prose-a:underline hover:prose-a:text-white
                         prose-blockquote:text-neon-orange/90 prose-blockquote:border-neon-orange/50">
@@ -252,16 +263,27 @@ export default BlogPost;
 
 // src/components/ContactSection.jsx
 
+import React from 'react';
+
 function ContactSection() {
     return (
-        <section id="contact" className="bg-base-light rounded-2xl max-w-3xl mx-auto p-12 text-center border border-accent-orange/20 mt-24">
-            <h2 className="text-4xl font-extrabold text-text-primary mb-4">Ready to Own Your Magic Name?</h2>
-            <p className="text-lg text-text-secondary mb-8 max-w-xl mx-auto">
+        <section
+            id="contact"
+            className="bg-base-light rounded-3xl max-w-4xl mx-auto p-12 md:p-16 text-center border border-neon-blue/30 shadow-xl shadow-neon-blue/20 mt-24 mb-24 transform hover:scale-105 transition-all duration-500 relative overflow-hidden group hover:bg-gradient-to-br from-base-light to-lepre-gold/10"
+        >
+            {/* Decorative background elements */}
+            <div className="absolute top-0 left-0 w-24 h-24 bg-neon-pink/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-xl group-hover:scale-150 transition-transform duration-500"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-neon-green/10 rounded-full translate-x-1/2 translate-y-1/2 blur-xl group-hover:scale-150 transition-transform duration-500"></div>
+
+            <h2 className="text-5xl font-extrabold text-text-primary mb-6 drop-shadow-[0_0_10px_rgba(0,255,255,0.6)] group-hover:text-neon-yellow transition-colors duration-300">
+                Ready to Own Your Magic Name?
+            </h2>
+            <p className="text-xl text-text-secondary mb-10 max-w-2xl mx-auto leading-relaxed">
                 Each domain is a gateway to opportunity. Click on any domain to visit its page and make an offer directly. For general inquiries, feel free to reach out.
             </p>
             <a
                 href="mailto:ramlarssondigital@proton.me"
-                className="inline-block bg-accent-orange text-base-dark font-medium rounded-lg px-10 py-4 shadow-sm hover:shadow-soft-glow hover:scale-105 transform transition duration-300"
+                className="inline-block bg-neon-orange text-base-dark font-bold rounded-full px-12 py-4 shadow-lg shadow-neon-orange/40 hover:shadow-neon-yellow/60 hover:scale-110 transform transition duration-300 text-lg tracking-wide uppercase hover:bg-neon-yellow"
             >
                 Contact Us
             </a>
@@ -271,7 +293,6 @@ function ContactSection() {
 
 export default ContactSection;
 
-
 /* ==== FILE: src\components\DomainCard.jsx ==== */
 
 // src/components/DomainCard.jsx
@@ -280,35 +301,35 @@ import { Sparkles, ExternalLink, Star } from 'lucide-react';
 
 function DomainCard({ domain }) {
     return (
-        <div className="bg-gradient-to-br from-black/60 via-purple-900/50 to-black/60 rounded-3xl shadow-[0_8px_30px_rgba(128,90,213,0.7)] ring-1 ring-neon-green/40 hover:ring-neon-orange/80 p-8 flex flex-col justify-between transition-all duration-350 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(252,147,38,0.8)]">
+        <div className="bg-lepre-white rounded-lg shadow-lepre-soft-shadow ring-1 ring-lepre-gold-dark hover:ring-lepre-green-dark p-8 flex flex-col justify-between transition-all duration-350 hover:-translate-y-1 hover:shadow-lepre-gold-glow">
             <div>
-                <h3 className="text-2xl font-extrabold text-yellow-300 flex items-center gap-3 mb-3 pb-3 border-b border-neon-pink/40 drop-shadow-[0_0_6px_rgba(255,55,135,0.7)]">
+                <h3 className="text-2xl font-extrabold text-lepre-text-primary flex items-center gap-3 mb-3 pb-3 border-b border-lepre-gold-dark">
                     {domain.name}
-                    <Star className="w-5 h-5 text-neon-pink animate-pulse" fill="currentColor" />
+                    <Star className="w-5 h-5 text-lepre-gold" fill="currentColor" />
                 </h3>
                 <div className="flex flex-wrap gap-2 mb-5">
                     {(Array.isArray(domain.category) ? domain.category : [domain.category]).map((cat) => (
                         <span
                             key={cat}
-                            className="bg-neon-pink/25 text-neon-pink text-xs font-semibold px-3 py-1 rounded-full border border-neon-pink/60 shadow-[0_0_6px_rgba(255,105,180,0.7)]"
+                            className="bg-lepre-gold/20 text-lepre-gold text-xs font-semibold px-3 py-1 rounded-full border border-lepre-gold/60"
                         >
                             {cat}
                         </span>
                     ))}
                 </div>
-                <p className="text-neon-green/85 text-base leading-relaxed min-h-[80px] mb-6 drop-shadow-[0_0_6px_rgba(57,240,145,0.85)]">
+                <p className="text-lepre-text-secondary text-base leading-relaxed min-h-[80px] mb-6">
                     {domain.description}
                 </p>
             </div>
             <div className="flex items-center justify-between mt-3">
-                <span className="text-neon-green font-bold flex items-center drop-shadow-[0_0_8px_rgba(57,240,145,0.9)]">
-                    <Sparkles className="w-5 h-5 mr-2 animate-glow-pulse text-neon-pink" /> For Sale
+                <span className="text-lepre-gold font-bold flex items-center">
+                    <Sparkles className="w-5 h-5 mr-2 text-lepre-green" /> For Sale
                 </span>
                 <a
                     href={`https://${domain.name}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-yellow-400 via-neon-orange to-yellow-500 text-purple-900 font-extrabold rounded-xl shadow-lg hover:shadow-yellow-500/70 hover:scale-105 transform transition duration-300"
+                    className="inline-flex items-center px-6 py-2 bg-lepre-green text-lepre-white font-extrabold rounded-lg shadow-lepre-soft-shadow hover:scale-105 transform transition duration-300"
                 >
                     Make Offer <ExternalLink className="w-5 h-5 ml-2" />
                 </a>
@@ -318,6 +339,8 @@ function DomainCard({ domain }) {
 }
 
 export default DomainCard;
+
+
 
 /* ==== FILE: src\components\DomainGrid.jsx ==== */
 
@@ -358,23 +381,23 @@ function DomainList() {
     }, [searchTerm, selectedCategory]);
 
     return (
-        <section id="domains" className="py-16">
-            <h2 className="text-4xl font-bold text-neon-pink mb-8 border-b-2 border-yellow-400 inline-block pb-2">Explore Our Brew</h2>
+        <section id="domains" className="py-16 bg-lepre-light-gray rounded-lg shadow-lepre-soft-shadow p-8 mt-8">
+            <h2 className="text-4xl font-bold text-lepre-gold mb-8 border-b-2 border-lepre-green inline-block pb-2">Explore Our Collection</h2>
             <div className="flex flex-col sm:flex-row gap-6 mb-8 items-center justify-between">
                 <div className="relative w-full sm:w-2/3">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-neon-green w-6 h-6" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lepre-green w-6 h-6" />
                     <input
                         type="text"
-                        placeholder="Search for a domain spell..."
-                        className="w-full pl-14 pr-4 py-3 bg-black/50 border border-neon-orange text-neon-orange rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-neon-green placeholder-neon-pink/70"
+                        placeholder="Search for a domain..."
+                        className="w-full pl-14 pr-4 py-3 bg-lepre-white border border-lepre-gold text-lepre-text-primary rounded-lg shadow-lepre-soft-shadow focus:outline-none focus:ring-2 focus:ring-lepre-green placeholder-lepre-text-secondary"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
                 <div className="relative w-full sm:w-1/3">
-                    <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-neon-green w-6 h-6" />
+                    <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-lepre-green w-6 h-6" />
                     <select
-                        className="appearance-none w-full pl-14 pr-4 py-3 bg-black/50 border border-neon-pink text-neon-pink rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-neon-orange"
+                        className="appearance-none w-full pl-14 pr-4 py-3 bg-lepre-white border border-lepre-gold text-lepre-text-primary rounded-lg shadow-lepre-soft-shadow focus:outline-none focus:ring-2 focus:ring-lepre-green"
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                     >
@@ -383,14 +406,14 @@ function DomainList() {
                     </select>
                 </div>
             </div>
-            <p className="text-yellow-300 mb-8 font-bold tracking-wider">{filteredDomains.length} enchanted domains found</p>
+            <p className="text-lepre-text-secondary mb-8 font-bold tracking-wider">{filteredDomains.length} domains found</p>
             {filteredDomains.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredDomains.map(domain => (<DomainCard key={domain.name} domain={domain} />))}
                 </div>
             ) : (
                 <div className="text-center py-16">
-                    <p className="text-2xl text-neon-orange font-semibold">No domains found matching your incantation.</p>
+                    <p className="text-2xl text-lepre-text-secondary font-semibold">No domains found matching your criteria.</p>
                 </div>
             )}
         </section>
@@ -399,16 +422,18 @@ function DomainList() {
 
 export default DomainList;
 
+
+
 /* ==== FILE: src\components\Footer.jsx ==== */
 
 // src/components/Footer.jsx
 
 function Footer() {
     return (
-        <footer className="bg-black/30 text-yellow-300/70 py-8 mt-16 border-t border-neon-pink/20">
+        <footer className="bg-lepre-light-gray text-lepre-text-secondary py-8 mt-16 border-t border-lepre-gold/20">
             <div className="container mx-auto px-6 text-center">
-                <p>&copy; {new Date().getFullYear()} SitePot. All spells reserved.</p>
-                <p className="text-sm mt-2 opacity-60">A Ram Larsson Digital Enchantment</p>
+                <p>&copy; {new Date().getFullYear()} SitePot. All rights reserved.</p>
+                <p className="text-sm mt-2 opacity-80">Crafted with a touch of luck</p>
             </div>
         </footer>
     );
@@ -416,42 +441,43 @@ function Footer() {
 
 export default Footer;
 
+
+
 /* ==== FILE: src\components\Hero.jsx ==== */
 
 // src/components/Hero.jsx
 
-import logo from '../assets/logo.png';
 import { Sparkles, Globe } from 'lucide-react';
 
 function Hero() {
     return (
-        <section id="hero" className="text-center py-14 relative flex flex-col items-center bg-gradient-to-b from-black/90 via-black/70 to-black/50">
+        <section
+            id="hero"
+            className="mt-8 py-14 text-center relative flex flex-col items-center bg-lepre-light-gray rounded-lg shadow-lepre-soft-shadow border border-lepre-gold-dark"
+        >
             <div className="relative mb-8 flex justify-center items-center">
-                <div className="rounded-full p-4 bg-gradient-to-tr from-yellow-400 via-yellow-300 to-yellow-500 shadow-[0_0_20px_5px_rgba(252,211,77,0.7)] animate-glow">
-                    <img
-                        src={logo}
-                        alt="Magical Pot of Domains"
-                        className="h-64 w-64 rounded-full object-cover drop-shadow-[0_0_15px_rgba(252,211,77,0.9)] animate-float"
-                    />
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
-                    <span className="text-6xl font-extrabold text-yellow-400 opacity-30 animate-glow-slow select-none user-select-none">.COM</span>
+                {/* Logo will be handled manually by the user */}
+                <div className="h-64 w-64 flex items-center justify-center bg-lepre-gold rounded-full shadow-lepre-gold-glow animate-lepre-float">
+                    <span className="text-6xl font-extrabold text-lepre-white opacity-90 select-none">
+                        .COM
+                    </span>
                 </div>
             </div>
 
-            <h2 className="text-6xl font-extrabold text-yellow-300 mb-6 drop-shadow-[0_0_8px_rgba(252,211,77,0.9)]">
+            <h2 className="text-3xl md:text-6xl font-extrabold text-lepre-text-primary mb-6 pl-6 pr-6 drop-shadow-md">
                 Search the Golden Pot
             </h2>
-            <p className="text-xl max-w-2xl mx-auto text-neon-green/95 font-semibold mb-10 leading-relaxed">
-                Find your <span className="font-extrabold">.com</span> domain from our glowing cauldron.
+
+            <p className="text-xl max-w-2xl mx-auto text-lepre-text-secondary font-semibold mb-10 leading-relaxed mr-4 ml-4">
+                Find your <span className="font-extrabold text-lepre-gold">.com</span> domain from our collection.
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-16 text-lg font-semibold">
-                <p className="flex items-center text-neon-green">
-                    <Sparkles className="w-7 h-7 mr-3 animate-glow-pulse text-neon-pink" /> Each domain has been handpicked
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-16 text-md font-semibold">
+                <p className="flex items-center text-lepre-text-primary">
+                    <Sparkles className="w-7 h-7 mr-3 text-lepre-gold" /> Each domain has been handpicked
                 </p>
-                <p className="flex items-center text-neon-orange">
-                    <Globe className="w-7 h-7 mr-3 animate-spin-slow" /> Visit domain URL to make an offer
+                <p className="flex items-center text-lepre-gold">
+                    <Globe className="w-7 h-7 mr-3 text-lepre-green" /> Visit domain URL to make an offer
                 </p>
             </div>
         </section>
@@ -459,6 +485,8 @@ function Hero() {
 }
 
 export default Hero;
+
+
 
 /* ==== FILE: src\components\Navbar.jsx ==== */
 
@@ -485,17 +513,18 @@ function Navbar() {
     };
 
     return (
-        <header className="sticky top-0 z-50 backdrop-blur-lg bg-dark-purple/70 border-b border-white/10 shadow-lg">
+        <header className="sticky top-0 z-50 backdrop-blur-sm bg-lepre-white/90 border-b border-lepre-mid-gray shadow-lepre-soft-shadow">
             <nav className="container mx-auto flex justify-end items-center px-8 py-4 space-x-10 text-lg font-bold">
-                <a href="/#domains" className="text-neon-orange hover:text-light-yellow transition-colors duration-300">Domains</a>
-                <Link to="/blog" className="text-neon-pink hover:text-light-yellow transition-colors duration-300">Blog</Link>
-                <a href="/#contact" className="text-neon-green hover:text-light-yellow transition-colors duration-300">Contact</a>
+                <a href="/#domains" className="text-lepre-text-primary hover:text-lepre-gold transition-colors duration-300">Domains</a>
+                {/* <Link to="/blog" className="text-lepre-text-primary hover:text-lepre-gold transition-colors duration-300">Blog</Link> */}
+                {/* <a href="/#contact" className="text-lepre-text-primary hover:text-lepre-gold transition-colors duration-300">Contact</a> */}
             </nav>
         </header>
     );
 }
 
 export default Navbar;
+
 
 
 /* ==== FILE: src\components\ui\accordion.jsx ==== */
@@ -5657,8 +5686,8 @@ export const domains = [
   },
   {
     name: "listerauto.com",
-    category: ["Automotive", "E-commerce & Retail"],
-    description: "A specialized domain for a vehicle listing marketplace, auto dealership platform, or car sales app, offering comprehensive inventories, pricing tools, and easy buying/selling features for automotive enthusiasts.",
+    category: ["Business & Professional", "E-commerce & Retail", "Automotive"],
+    description: "Ideal for automotive marketplaces, car sales apps, or dealerships, as well as platforms offering automated listing services for products, inventories, or business directories across industries.",
     forSale: true
   },
   {
@@ -5981,21 +6010,87 @@ export const domains = [
   },
   {
     name: "pamman.com",
-    category: ["Miscellaneous", "Brandable"],
-    description: "A short, memorable brandable domain well suited for a creative agency, personal portfolio, or tech startup aiming to build a unique identity around the name 'Pamman'.",
+    category: ["Miscellaneous"],
+    description: "Pamman, derived from Tamil, means Brahman — the supreme cosmic spirit in Hinduism. Ideal for cultural, spiritual, educational, or identity-focused brands.",
     forSale: true
   },
   {
     name: "readsolution.com",
-    category: ["Business", "Technology", "SaaS"],
-    description: "Ideal for a SaaS platform, consulting service, or educational technology company delivering smart data reading, document management, or problem-solving software solutions.",
+    category: ["Business & Professional", "Technology & Software", "Services & Consulting"],
+    description: "Perfect for a SaaS platform, consulting, or edtech company delivering smart data reading, document management, or problem-solving software solutions.",
     forSale: true
   },
   {
     name: "sharefurniture.com",
-    category: ["E-commerce", "Marketplace", "Home & Garden"],
-    description: "Perfect for an online marketplace or rental platform focused on furniture sharing, resale, or rental services, tapping into circular economy and sustainable living trends.",
+    category: ["E-commerce & Retail", "Home & Garden", "Services & Consulting"],
+    description: "Ideal for an online marketplace or rental platform focused on furniture sharing, resale, or rental services within the circular economy and sustainable living.",
     forSale: true
+  },
+  {
+    name: "imagegain.com",
+    category: ["Technology & Software", "Digital Marketing", "Art & Design"],
+    description: "Great for an AI-powered platform offering image enhancement, generation, or analytics to boost marketing visuals, personalize content, and optimize creative workflows.",
+    forSale: true
+  },
+  {
+    name: "cabinprices.com",
+    category: ["Travel & Hospitality", "Real Estate"],
+    description: "Ideal for comparing cabin rental prices, vacation deals, or real estate. Perfect for booking sites, affiliates, or travel blogs.",
+    forSale: true
+  },
+  {
+    name: "pensionrates.com",
+    category: ["Finance & Investment"],
+    description: "Great for pension rate comparison sites, retirement planning tools, or financial advisory services targeting aging demographics.",
+    forSale: true
+  },
+  {
+    name: "searchteacher.com",
+    category: ["Education & Learning"],
+    description: "Versatile for teacher job boards, tutoring directories, or lesson resource platforms. Monetize via ads, courses, or listings.",
+    forSale: true
+  },
+  {
+    "name": "hotelsnewark.com",
+    "category": ["Travel & Hospitality"],
+    "description": "Prime domain for a Newark, NJ focused hotel booking site, travel guide, or accommodation directory. Perfect for capitalizing on Newark airport traffic and rising tourism.",
+    "forSale": true
+  },
+  {
+    "name": "audiocleaning.com",
+    "category": ["Technology & Software", "Entertainment & Media"],
+    "description": "Prime domain for audio restoration services, noise reduction apps, or podcast tools. Ideal for pros cleaning up sound files, enhancing clarity, and boosting media production quality.",
+    "forSale": true
+  },
+  {
+    "name": "selectjournal.com",
+    "category": ["Education & Learning", "Entertainment & Media"],
+    "description": "Premium domain for curated journaling apps, selective news platforms, or academic publishing. Perfect for users seeking personalized content curation and high-quality writing experiences.",
+    "forSale": true
+  },
+  {
+    "name": "pokerprofiles.com",
+    "category": ["Entertainment & Media", "Sports & Fitness"],
+    "description": "Engaging domain for poker player databases, strategy sites, or tournament apps. Build profiles, track stats, and connect enthusiasts in the growing online poker community.",
+    "forSale": true
+  },
+  {
+    "name": "patellasurgery.com",
+    "category": ["Health & Wellness", "Services & Consulting"],
+    "description": "Specialized domain for knee surgery clinics, recovery guides, or medical info sites. Attract patients seeking expert patella treatment options and post-op resources.",
+    "forSale": true
+  },
+  {
+    "name": "FirstTemplates.com",
+    "category": ["Technology & Software", "E-commerce & Retail", "Business & Professional", "Services & Consulting"],
+    "description": "Marketplace offering ready-made digital templates for websites, blogs, and businesses, simplifying online launches for individuals and organizations.",
+    "forSale": true
+  },
+  {
+    "name": "lastfield.com",
+    "category": ["Technology & Software", "Entertainment & Media", "Miscellaneous"],
+    "description": "Perfect for a software tool that manages database fields or a gaming portal dedicated to adventure and strategy titles, providing resources and community features for developers and players alike.",
+    "forSale": true
   }
 ];
 
@@ -6040,15 +6135,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import './App.css'; // Make sure this is imported!
+import './App.css';  // Global CSS import (critical for Tailwind)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <App />
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
+
 
 /* ==== FILE: src\pages\Home.jsx ==== */
 
@@ -6058,74 +6154,183 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 // tailwind.config.js
 
+import typography from '@tailwindcss/typography';
+import animate from 'tailwindcss-animate';
+
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: ["class"],
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
+    safelist: [
+        // Existing safelisted classes
+        'bg-lepre-white',
+        'bg-lepre-light-gray',
+        'bg-lepre-mid-gray',
+        'bg-lepre-gold',
+        'bg-lepre-gold-dark',
+        'bg-lepre-green',
+        'bg-lepre-green-dark',
+        'text-lepre-text-primary',
+        'text-lepre-text-secondary',
+        'text-lepre-text-tertiary',
+        'text-lepre-gold',
+        'text-lepre-white',
+        'border-lepre-gold-dark',
+        'border-lepre-mid-gray',
+        'shadow-lepre-soft-shadow',
+        'shadow-lepre-gold-glow',
+        'animate-lepre-float',
+        // New safelisted classes for neon and base colors
+        'bg-base-dark',
+        'bg-base-light',
+        'text-text-primary',
+        'text-text-secondary',
+        'text-text-tertiary',
+        'bg-neon-pink',
+        'text-neon-pink',
+        'bg-neon-green',
+        'text-neon-green',
+        'bg-neon-blue',
+        'text-neon-blue',
+        'bg-neon-orange',
+        'text-neon-orange',
+        'bg-neon-yellow',
+        'text-neon-yellow',
+        'shadow-neon-blue/20',
+        'shadow-neon-pink/40',
+        'border-neon-blue/30',
+        'border-neon-pink/20',
+        'border-neon-pink/60',
+        'bg-neon-green/20',
+        'bg-neon-pink/10',
+        'bg-neon-pink/25',
+        'text-neon-green/80',
+        'text-neon-green/70',
+        'text-neon-green/90',
+        'shadow-purple-900/30',
+        'shadow-yellow-500/70',
+        'bg-gradient-to-r from-yellow-400 via-neon-orange to-yellow-500',
+    ],
     theme: {
+        container: {
+            center: true,
+            padding: "2rem",
+            screens: {
+                "2xl": "1400px",
+            },
+        },
         extend: {
             colors: {
-                'dark-purple': '#1a1032',      // Deepest background
-                'deep-purple': '#2a1b4d',      // Main purple
-                'mid-purple': '#4b3286',       // Lighter purple for gradients
-                'neon-orange': '#fc9326',      // Bright accent
-                'neon-green': '#39f091',       // Bright accent
-                'neon-pink': '#ff37a5',        // Bright accent
-                'light-yellow': '#fcd34d',     // For text and glows
+                // Core UI color references to CSS variables
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                primary: {
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
+
+                // Existing custom named colors
+                "lepre-white": "#FDFDFD",
+                "lepre-light-gray": "#F5F5F5",
+                "lepre-mid-gray": "#EAEAEA",
+                "lepre-text-primary": "#333333",
+                "lepre-text-secondary": "#555555",
+                "lepre-text-tertiary": "#777777",
+                "lepre-gold": "#FFD700",
+                "lepre-gold-dark": "#CCAA00",
+                "lepre-green": "#3CB371",
+                "lepre-green-dark": "#2E8B57",
+                "lepre-accent-brown": "#8B4513",
+
+                // New neon and base colors for blog components
+                "base-dark": "#1A1A1A",  // Dark background for blog
+                "base-light": "#2D2D2D", // Slightly lighter for cards
+                "text-primary": "#FFFFFF", // White text for dark backgrounds
+                "text-secondary": "#D1D1D1", // Light gray for subtitles
+                "text-tertiary": "#A1A1A1", // Medium gray for metadata
+                "neon-pink": "#FF00FF",
+                "neon-green": "#39FF14",
+                "neon-blue": "#00FFFF",
+                "neon-orange": "#FF6700",
+                "neon-yellow": "#FFFF00",
             },
             backgroundImage: {
-                'magic-bg': 'radial-gradient(circle at 20% 80%, rgba(255, 55, 165, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 20%, rgba(57, 240, 145, 0.12) 0%, transparent 40%), radial-gradient(circle at 40% 40%, rgba(252, 147, 38, 0.1) 0%, transparent 40%)',
-                'card-gradient': 'linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(75, 50, 134, 0.1) 100%)',
-                'button-gradient': 'linear-gradient(135deg, #fc9326 0%, #fcd34d 100%)',
+                "lepre-gold-gradient": "linear-gradient(to right, #FFD700, #CCAA00)",
+                "lepre-green-gradient": "linear-gradient(to right, #3CB371, #2E8B57)",
             },
             boxShadow: {
-                'card-shadow': '0 8px 32px rgba(0, 0, 0, 0.4)',
-                'glow-pink': '0 0 20px rgba(255, 55, 165, 0.5)',
-                'glow-yellow': '0 0 20px rgba(252, 211, 77, 0.7)',
-                'glow-green': '0 0 20px rgba(57, 240, 145, 0.5)',
+                "lepre-soft-shadow": "0 4px 15px rgba(0, 0, 0, 0.1)",
+                "lepre-gold-glow": "0 0 20px rgba(255, 215, 0, 0.4)",
+                "lepre-green-glow": "0 0 15px rgba(60, 179, 113, 0.3)",
+            },
+            borderRadius: {
+                lg: "var(--radius)",
+                md: "calc(var(--radius) - 2px)",
+                sm: "calc(var(--radius) - 4px)",
             },
             keyframes: {
+                "accordion-down": {
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
+                },
+                "accordion-up": {
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
+                },
                 float: {
-                    '0%, 100%': { transform: 'translateY(0px)' },
-                    '50%': { transform: 'translateY(-15px)' },
+                    "0%, 100%": { transform: "translateY(0px)" },
+                    "50%": { transform: "translateY(-6px)" },
                 },
-                'spin-slow': {
-                    from: { transform: 'rotate(0deg)' },
-                    to: { transform: 'rotate(360deg)' },
-                },
-                'glow-pulse': {
-                    '0%, 100%': { opacity: '1', boxShadow: '0 0 10px var(--tw-shadow-color)' },
-                    '50%': { opacity: '0.7', boxShadow: '0 0 20px var(--tw-shadow-color)' },
-                }
             },
             animation: {
-                'float': 'float 4s ease-in-out infinite',
-                'spin-slow': 'spin-slow 25s linear infinite',
-                'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
+                "lepre-float": "float 3.5s ease-in-out infinite",
             },
         },
     },
-    plugins: [
-        require('@tailwindcss/typography'),
-    ],
-}
-
+    plugins: [typography, animate],
+};
 
 /* ==== FILE: vite.config.js ==== */
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
+// vite.config.js
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-})
+  plugins: [react(), tailwindcss()],
+});

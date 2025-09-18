@@ -2,13 +2,14 @@
 
 function Footer() {
     return (
-        <footer className="bg-black/30 text-yellow-300/70 py-8 mt-16 border-t border-neon-pink/20">
+        <footer className="bg-lepre-light-gray text-lepre-text-secondary py-8 mt-16 border-t border-lepre-gold/20">
             <div className="container mx-auto px-6 text-center">
-                <p>&copy; {new Date().getFullYear()} SitePot. All spells reserved.</p>
-                <p className="text-sm mt-2 opacity-60">A Ram Larsson Digital Enchantment</p>
+                <p>&copy; {new Date().getFullYear()} SitePot. All rights reserved.</p>
+                <p className="text-sm mt-2 opacity-80">Crafted with a touch of luck</p>
             </div>
         </footer>
     );
 }
 
 export default Footer;
+

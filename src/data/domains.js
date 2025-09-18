@@ -253,8 +253,8 @@ export const domains = [
   },
   {
     name: "listerauto.com",
-    category: ["Automotive", "E-commerce & Retail"],
-    description: "A specialized domain for a vehicle listing marketplace, auto dealership platform, or car sales app, offering comprehensive inventories, pricing tools, and easy buying/selling features for automotive enthusiasts.",
+    category: ["Business & Professional", "E-commerce & Retail", "Automotive"],
+    description: "Ideal for automotive marketplaces, car sales apps, or dealerships, as well as platforms offering automated listing services for products, inventories, or business directories across industries.",
     forSale: true
   },
   {
@@ -577,26 +577,86 @@ export const domains = [
   },
   {
     name: "pamman.com",
-    category: ["Miscellaneous", "Brandable"],
-    description: "A short, memorable brandable domain well suited for a creative agency, personal portfolio, or tech startup aiming to build a unique identity around the name 'Pamman'.",
+    category: ["Miscellaneous"],
+    description: "Pamman, derived from Tamil, means Brahman — the supreme cosmic spirit in Hinduism. Ideal for cultural, spiritual, educational, or identity-focused brands.",
     forSale: true
   },
   {
     name: "readsolution.com",
-    category: ["Business", "Technology", "SaaS"],
-    description: "Ideal for a SaaS platform, consulting service, or educational technology company delivering smart data reading, document management, or problem-solving software solutions.",
+    category: ["Business & Professional", "Technology & Software", "Services & Consulting"],
+    description: "Perfect for a SaaS platform, consulting, or edtech company delivering smart data reading, document management, or problem-solving software solutions.",
     forSale: true
   },
   {
     name: "sharefurniture.com",
-    category: ["E-commerce", "Marketplace", "Home & Garden"],
-    description: "Perfect for an online marketplace or rental platform focused on furniture sharing, resale, or rental services, tapping into circular economy and sustainable living trends.",
+    category: ["E-commerce & Retail", "Home & Garden", "Services & Consulting"],
+    description: "Ideal for an online marketplace or rental platform focused on furniture sharing, resale, or rental services within the circular economy and sustainable living.",
     forSale: true
   },
   {
     name: "imagegain.com",
-    category: ["AI & Technology", "Digital Marketing", "Creative Design", "SaaS"],
-    description: "Perfect for an AI-powered platform offering image enhancement, generation, or analytics tools to boost marketing visuals, personalize content, and optimize creative workflows for businesses.",
+    category: ["Technology & Software", "Digital Marketing", "Art & Design"],
+    description: "Great for an AI-powered platform offering image enhancement, generation, or analytics to boost marketing visuals, personalize content, and optimize creative workflows.",
     forSale: true
+  },
+  {
+    name: "cabinprices.com",
+    category: ["Travel & Hospitality", "Real Estate"],
+    description: "Ideal for comparing cabin rental prices, vacation deals, or real estate. Perfect for booking sites, affiliates, or travel blogs.",
+    forSale: true
+  },
+  {
+    name: "pensionrates.com",
+    category: ["Finance & Investment"],
+    description: "Great for pension rate comparison sites, retirement planning tools, or financial advisory services targeting aging demographics.",
+    forSale: true
+  },
+  {
+    name: "searchteacher.com",
+    category: ["Education & Learning"],
+    description: "Versatile for teacher job boards, tutoring directories, or lesson resource platforms. Monetize via ads, courses, or listings.",
+    forSale: true
+  },
+  {
+    "name": "hotelsnewark.com",
+    "category": ["Travel & Hospitality"],
+    "description": "Prime domain for a Newark, NJ focused hotel booking site, travel guide, or accommodation directory. Perfect for capitalizing on Newark airport traffic and rising tourism.",
+    "forSale": true
+  },
+  {
+    "name": "audiocleaning.com",
+    "category": ["Technology & Software", "Entertainment & Media"],
+    "description": "Prime domain for audio restoration services, noise reduction apps, or podcast tools. Ideal for pros cleaning up sound files, enhancing clarity, and boosting media production quality.",
+    "forSale": true
+  },
+  {
+    "name": "selectjournal.com",
+    "category": ["Education & Learning", "Entertainment & Media"],
+    "description": "Premium domain for curated journaling apps, selective news platforms, or academic publishing. Perfect for users seeking personalized content curation and high-quality writing experiences.",
+    "forSale": true
+  },
+  {
+    "name": "pokerprofiles.com",
+    "category": ["Entertainment & Media", "Sports & Fitness"],
+    "description": "Engaging domain for poker player databases, strategy sites, or tournament apps. Build profiles, track stats, and connect enthusiasts in the growing online poker community.",
+    "forSale": true
+  },
+  {
+    "name": "patellasurgery.com",
+    "category": ["Health & Wellness", "Services & Consulting"],
+    "description": "Specialized domain for knee surgery clinics, recovery guides, or medical info sites. Attract patients seeking expert patella treatment options and post-op resources.",
+    "forSale": true
+  },
+  {
+    "name": "FirstTemplates.com",
+    "category": ["Technology & Software", "E-commerce & Retail", "Business & Professional", "Services & Consulting"],
+    "description": "Marketplace offering ready-made digital templates for websites, blogs, and businesses, simplifying online launches for individuals and organizations.",
+    "forSale": true
+  },
+  {
+    "name": "lastfield.com",
+    "category": ["Technology & Software", "Entertainment & Media", "Miscellaneous"],
+    "description": "Perfect for a software tool that manages database fields or a gaming portal dedicated to adventure and strategy titles, providing resources and community features for developers and players alike.",
+    "forSale": true
   }
 ];

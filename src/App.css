@@ -1,40 +1,48 @@
-/* src/App.css */
-
-/* Import Tailwind's base, components, and utility layers */
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* Define the base background color for the body */
-body {
-  background-color: #242222;
-  /* base-dark */
-  color: white;
+@theme {
+  /* Your lepre colors */
+  --color-lepre-white: #FDFDFD;
+  --color-lepre-light-gray: #F5F5F5;
+  --color-lepre-mid-gray: #EAEAEA;
+  --color-lepre-text-primary: #333333;
+  --color-lepre-text-secondary: #555555;
+  --color-lepre-text-tertiary: #777777;
+  --color-lepre-gold: #FFD700;
+  --color-lepre-gold-dark: #CCAA00;
+  --color-lepre-green: #3CB371;
+  --color-lepre-green-dark: #2E8B57;
+  --color-lepre-accent-brown: #8B4513;
+
+  /* Your neon colors for blog */
+  --color-base-dark: #1A1A1A;
+  --color-base-light: #2D2D2D;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #D1D1D1;
+  --color-text-tertiary: #A1A1A1;
+  --color-neon-pink: #FF00FF;
+  --color-neon-green: #39FF14;
+  --color-neon-blue: #00FFFF;
+  --color-neon-orange: #FF6700;
+  --color-neon-yellow: #FFFF00;
+
+  /* Your custom animations */
+  --animate-lepre-float: float 3.5s ease-in-out infinite;
+
+  /* Your custom shadows */
+  --shadow-lepre-soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lepre-gold-glow: 0 0 20px rgba(255, 215, 0, 0.4);
+  --shadow-lepre-green-glow: 0 0 15px rgba(60, 179, 113, 0.3);
 }
 
-/* Custom utility class for text glowing effect */
-@layer utilities {
-  .text-glow {
-    text-shadow: 0 0 8px #00FFFF, 0 0 16px #00FFFF;
-    /* neon-blue glow */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
   }
-}
 
-/* Custom scrollbar styling for a thematic feel */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1A1A1A;
-  /* base-light */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #FF00FF;
-  /* neon-pink */
-  border-radius: 20px;
-  border: 3px solid #1A1A1A;
-  /* base-light */
+  50% {
+    transform: translateY(-6px);
+  }
 }
