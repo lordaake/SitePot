@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-@theme {
-  /* Your lepre colors */
+/* Light theme variables */
+:root {
   --color-lepre-white: #FDFDFD;
   --color-lepre-light-gray: #F5F5F5;
   --color-lepre-mid-gray: #EAEAEA;
@@ -14,7 +14,7 @@
   --color-lepre-green-dark: #2E8B57;
   --color-lepre-accent-brown: #8B4513;
 
-  /* Your neon colors for blog */
+  /* Neon colors for blog */
   --color-base-dark: #1A1A1A;
   --color-base-light: #2D2D2D;
   --color-text-primary: #FFFFFF;
@@ -26,14 +26,46 @@
   --color-neon-orange: #FF6700;
   --color-neon-yellow: #FFFF00;
 
-  /* Your custom animations */
+  /* Custom animations and shadows here */
   --animate-lepre-float: float 3.5s ease-in-out infinite;
-
-  /* Your custom shadows */
   --shadow-lepre-soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   --shadow-lepre-gold-glow: 0 0 20px rgba(255, 215, 0, 0.4);
   --shadow-lepre-green-glow: 0 0 15px rgba(60, 179, 113, 0.3);
 }
+
+/* Dark theme overrides */
+.dark {
+  --color-lepre-white: #1A1A1A;
+  --color-lepre-light-gray: #2D2D2D;
+  --color-lepre-mid-gray: #3D3D3D;
+  --color-lepre-text-primary: #E0E0E0;
+  --color-lepre-text-secondary: #B0B0B0;
+  --color-lepre-text-tertiary: #888888;
+  --color-lepre-gold: #FFD700;
+  --color-lepre-gold-dark: #CCAA00;
+  --color-lepre-green: #3CB371;
+  --color-lepre-green-dark: #2E8B57;
+  --color-lepre-accent-brown: #8B4513;
+
+  /* Neon colors remain the same or slightly adjusted for dark */
+  --color-base-dark: #121212;
+  --color-base-light: #1F1F1F;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #CCCCCC;
+  --color-text-tertiary: #AAAAAA;
+  --color-neon-pink: #FF00FF;
+  --color-neon-green: #39FF14;
+  --color-neon-blue: #00FFFF;
+  --color-neon-orange: #FF6700;
+  --color-neon-yellow: #FFFF00;
+
+  /* Shadows adapted for dark */
+  --shadow-lepre-soft-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  --shadow-lepre-gold-glow: 0 0 20px rgba(255, 215, 0, 0.8);
+  --shadow-lepre-green-glow: 0 0 15px rgba(60, 179, 113, 0.6);
+}
+
+/* Include your keyframes and animations unchanged */
 
 @keyframes float {
 
@@ -45,4 +77,34 @@
   50% {
     transform: translateY(-6px);
   }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+@keyframes rainbow-pulse {
+
+  0%,
+  100% {
+    filter: blur(2px) brightness(1);
+  }
+
+  50% {
+    filter: blur(1px) brightness(1.2);
+  }
+}
+
+.rainbow-glow {
+  animation: rainbow-pulse 3s ease-in-out infinite;
 }

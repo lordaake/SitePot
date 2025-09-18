@@ -1,5 +1,4 @@
-// src/components/BlogPost.jsx
-
+import React from 'react'; // <-- **THIS LINE WAS MISSING**
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, Clock, ArrowLeft, Frown } from 'lucide-react';
 import { blogPosts } from '../data/blogData';
@@ -10,70 +9,73 @@ function BlogPost() {
 
   if (!post) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center flex flex-col items-center justify-center bg-base-dark text-text-primary">
-        <Frown className="w-24 h-24 text-neon-pink mx-auto mb-6 animate-pulse" />
-        <h1 className="text-5xl font-extrabold text-neon-yellow mb-4">404 - Spell Not Found</h1>
-        <p className="text-lg text-neon-green/80 mb-8 max-w-md mx-auto">
-          The ancient scroll you seek has vanished into the ether.
+      <div className="container mx-auto px-4 py-16 text-center flex flex-col items-center justify-center bg-lepre-white text-lepre-text-primary min-h-screen">
+        <Frown className="w-24 h-24 text-lepre-green mx-auto mb-6 animate-pulse" />
+        <h1 className="text-5xl font-extrabold text-lepre-text-primary mb-4">404 - Page Not Found</h1>
+        <p className="text-lg text-lepre-text-secondary mb-8 max-w-md mx-auto">
+          The blog post you're looking for doesn't exist or has been moved.
         </p>
         <Link
           to="/blog"
-          className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-neon-yellow via-neon-orange to-neon-yellow text-base-dark font-extrabold rounded-xl shadow-lg hover:shadow-neon-yellow/70 hover:scale-105 transform transition"
+          className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-lepre-green to-lepre-gold text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Return to the Library
+          Back to Blog
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 bg-base-dark">
-      <article className="max-w-4xl mx-auto bg-base-light/30 rounded-2xl shadow-lg shadow-neon-pink/30 p-6 sm:p-10 border border-neon-pink/20">
+    <div className="container mx-auto px-4 py-12 bg-lepre-white min-h-screen">
+      <article className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-6 sm:p-10 border border-lepre-green/20">
         <div className="mb-8">
-          <Link to="/blog" className="inline-flex items-center text-neon-orange hover:text-neon-yellow font-bold transition-colors">
+          <Link to="/blog" className="inline-flex items-center text-lepre-green hover:text-lepre-gold font-bold transition-colors duration-300">
             <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to All Spells
+            Back to All Posts
           </Link>
         </div>
 
-        <span className="inline-block bg-neon-pink/25 text-neon-pink text-xs font-semibold px-3 py-1 rounded-full border border-neon-pink/60 mb-4">
+        <span className="inline-block bg-lepre-green/20 text-lepre-green text-xs font-semibold px-3 py-1 rounded-full border border-lepre-green/30 mb-4">
           {post.category}
         </span>
 
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-neon-yellow mb-6 leading-tight drop-shadow-[0_0_8px_rgba(252,211,77,0.8)]">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-lepre-text-primary mb-6 leading-tight">
           {post.title}
         </h1>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-neon-green/80 text-sm mb-8 border-b border-neon-pink/20 pb-6">
-          <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-neon-pink" /><span>{post.date}</span></div>
-          <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-neon-pink" /><span>{post.readTime}</span></div>
-          <div className="flex items-center gap-2"><User className="w-4 h-4 text-neon-pink" /><span>By {post.author}</span></div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-lepre-text-secondary text-sm mb-8 border-b border-lepre-green/20 pb-6">
+          <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-lepre-green" /><span>{post.date}</span></div>
+          <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-lepre-green" /><span>{post.readTime}</span></div>
+          <div className="flex items-center gap-2"><User className="w-4 h-4 text-lepre-green" /><span>By {post.author}</span></div>
         </div>
 
         <img src={post.image} alt={post.title} className="w-full max-h-[450px] object-cover rounded-xl mb-8 shadow-lg hover:scale-105 transition-transform duration-300" />
 
-        <div className="prose prose-lg max-w-none 
-                        prose-p:text-neon-green/90 
-                        prose-headings:text-neon-yellow 
-                        prose-strong:text-white 
-                        prose-a:text-neon-pink prose-a:underline hover:prose-a:text-white
-                        prose-blockquote:text-neon-orange/90 prose-blockquote:border-neon-orange/50">
+        <div className="prose prose-lg max-w-none text-lepre-text-primary">
           {post.content.map((block, index) => {
-            if (block.type === 'paragraph') return <p key={index}>{block.text}</p>;
+            if (block.type === 'paragraph') {
+              return <p key={index} className="text-lepre-text-secondary leading-relaxed mb-6">{block.text}</p>;
+            }
             if (block.type === 'heading') {
               const HeadingTag = `h${block.level}`;
-              return <HeadingTag key={index}>{block.text}</HeadingTag>;
+              // Using React.createElement requires the React library to be imported
+              return React.createElement(HeadingTag, {
+                key: index,
+                className: "text-lepre-text-primary font-bold mb-4 mt-8"
+              }, block.text);
             }
             return null;
           })}
         </div>
 
-        <div className="flex items-center mt-10 pt-6 border-t border-neon-pink/20">
-          <User className="w-12 h-12 text-neon-green/50 mr-4" />
+        <div className="flex items-center mt-10 pt-6 border-t border-lepre-green/20">
+          <div className="w-12 h-12 bg-lepre-green/20 rounded-full flex items-center justify-center mr-4">
+            <User className="w-6 h-6 text-lepre-green" />
+          </div>
           <div>
-            <p className="font-semibold text-neon-green">{post.author}</p>
-            <p className="text-sm text-neon-green/70">{post.authorTitle}</p>
+            <p className="font-semibold text-lepre-text-primary">{post.author}</p>
+            <p className="text-sm text-lepre-text-secondary">{post.authorTitle}</p>
           </div>
         </div>
       </article>

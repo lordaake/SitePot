@@ -111,20 +111,18 @@ export default App;
 
 /* ==== FILE: src\components\Blog.jsx ==== */
 
-// src/components/Blog.jsx
-
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogData';
 
 function Blog() {
   return (
-    <div className="container mx-auto px-4 py-12 bg-base-dark min-h-screen text-text-primary">
+    <div className="container mx-auto px-4 py-12 bg-lepre-white min-h-screen text-lepre-text-primary">
       <section className="text-center mb-16">
-        <h2 className="text-5xl font-extrabold text-neon-pink mb-4 drop-shadow-[0_0_12px_rgba(255,0,255,0.8)]">
+        <h2 className="text-5xl font-extrabold text-lepre-green mb-4">
           Domain Insights
         </h2>
-        <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-lepre-text-secondary max-w-3xl mx-auto leading-relaxed">
           Expert strategies, trends, and tutorials for choosing, investing in, and maximizing the value of premium domains.
         </p>
       </section>
@@ -133,7 +131,7 @@ function Blog() {
         {blogPosts.map(post => (
           <div
             key={post.id}
-            className="bg-base-light rounded-2xl shadow-xl shadow-neon-blue/20 hover:shadow-neon-pink/40 transition-all duration-500 overflow-hidden border border-neon-blue/30 flex flex-col hover:-translate-y-2 transform group hover:bg-gradient-to-br from-base-dark to-lepre-gold/10"
+            className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-lepre-green/20 flex flex-col hover:-translate-y-2 transform group"
           >
             <img
               src={post.image}
@@ -141,24 +139,26 @@ function Blog() {
               className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="p-6 flex flex-col flex-grow">
-              <span className="bg-neon-green/20 text-neon-green text-xs font-semibold px-3 py-1 rounded-full mb-4 self-start tracking-wide">
+              <span className="bg-lepre-green/20 text-lepre-green text-xs font-semibold px-3 py-1 rounded-full mb-4 self-start tracking-wide">
                 {post.category}
               </span>
-              <h3 className="text-2xl font-bold text-text-primary mb-3 flex-grow leading-tight group-hover:text-neon-yellow transition-colors duration-300">{post.title}</h3>
-              <div className="flex items-center text-text-tertiary text-sm mt-auto mb-4 space-x-4">
+              <h3 className="text-2xl font-bold text-lepre-text-primary mb-3 flex-grow leading-tight group-hover:text-lepre-green transition-colors duration-300">
+                {post.title}
+              </h3>
+              <div className="flex items-center text-lepre-text-tertiary text-sm mt-auto mb-4 space-x-4">
                 <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-2 text-neon-blue" /> {post.date}
+                  <Calendar className="w-4 h-4 mr-2 text-lepre-green" /> {post.date}
                 </div>
                 <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2 text-neon-blue" /> {post.readTime}
+                  <Clock className="w-4 h-4 mr-2 text-lepre-green" /> {post.readTime}
                 </div>
               </div>
-              <p className="text-text-secondary text-base mb-6 h-20 overflow-hidden leading-relaxed">
+              <p className="text-lepre-text-secondary text-base mb-6 h-20 overflow-hidden leading-relaxed">
                 {post.content[0].text.substring(0, 120)}...
               </p>
               <Link
                 to={`/blog/${post.id}`}
-                className="mt-auto inline-flex items-center text-neon-orange hover:text-neon-yellow font-bold self-start text-lg group-hover:translate-x-1 transition-transform duration-300"
+                className="mt-auto inline-flex items-center text-lepre-green hover:text-lepre-gold font-bold self-start text-lg group-hover:translate-x-1 transition-all duration-300"
               >
                 Read More <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
@@ -174,8 +174,6 @@ export default Blog;
 
 /* ==== FILE: src\components\BlogPost.jsx ==== */
 
-// src/components/BlogPost.jsx
-
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, Clock, ArrowLeft, Frown } from 'lucide-react';
 import { blogPosts } from '../data/blogData';
@@ -186,70 +184,72 @@ function BlogPost() {
 
   if (!post) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center flex flex-col items-center justify-center bg-base-dark text-text-primary">
-        <Frown className="w-24 h-24 text-neon-pink mx-auto mb-6 animate-pulse" />
-        <h1 className="text-5xl font-extrabold text-neon-yellow mb-4">404 - Spell Not Found</h1>
-        <p className="text-lg text-neon-green/80 mb-8 max-w-md mx-auto">
-          The ancient scroll you seek has vanished into the ether.
+      <div className="container mx-auto px-4 py-16 text-center flex flex-col items-center justify-center bg-lepre-white text-lepre-text-primary min-h-screen">
+        <Frown className="w-24 h-24 text-lepre-green mx-auto mb-6 animate-pulse" />
+        <h1 className="text-5xl font-extrabold text-lepre-text-primary mb-4">404 - Page Not Found</h1>
+        <p className="text-lg text-lepre-text-secondary mb-8 max-w-md mx-auto">
+          The blog post you're looking for doesn't exist or has been moved.
         </p>
         <Link
           to="/blog"
-          className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-neon-yellow via-neon-orange to-neon-yellow text-base-dark font-extrabold rounded-xl shadow-lg hover:shadow-neon-yellow/70 hover:scale-105 transform transition"
+          className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-lepre-green to-lepre-gold text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Return to the Library
+          Back to Blog
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 bg-base-dark">
-      <article className="max-w-4xl mx-auto bg-base-light/30 rounded-2xl shadow-lg shadow-neon-pink/30 p-6 sm:p-10 border border-neon-pink/20">
+    <div className="container mx-auto px-4 py-12 bg-lepre-white min-h-screen">
+      <article className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-6 sm:p-10 border border-lepre-green/20">
         <div className="mb-8">
-          <Link to="/blog" className="inline-flex items-center text-neon-orange hover:text-neon-yellow font-bold transition-colors">
+          <Link to="/blog" className="inline-flex items-center text-lepre-green hover:text-lepre-gold font-bold transition-colors duration-300">
             <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to All Spells
+            Back to All Posts
           </Link>
         </div>
 
-        <span className="inline-block bg-neon-pink/25 text-neon-pink text-xs font-semibold px-3 py-1 rounded-full border border-neon-pink/60 mb-4">
+        <span className="inline-block bg-lepre-green/20 text-lepre-green text-xs font-semibold px-3 py-1 rounded-full border border-lepre-green/30 mb-4">
           {post.category}
         </span>
 
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-neon-yellow mb-6 leading-tight drop-shadow-[0_0_8px_rgba(252,211,77,0.8)]">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-lepre-text-primary mb-6 leading-tight">
           {post.title}
         </h1>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-neon-green/80 text-sm mb-8 border-b border-neon-pink/20 pb-6">
-          <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-neon-pink" /><span>{post.date}</span></div>
-          <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-neon-pink" /><span>{post.readTime}</span></div>
-          <div className="flex items-center gap-2"><User className="w-4 h-4 text-neon-pink" /><span>By {post.author}</span></div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-lepre-text-secondary text-sm mb-8 border-b border-lepre-green/20 pb-6">
+          <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-lepre-green" /><span>{post.date}</span></div>
+          <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-lepre-green" /><span>{post.readTime}</span></div>
+          <div className="flex items-center gap-2"><User className="w-4 h-4 text-lepre-green" /><span>By {post.author}</span></div>
         </div>
 
         <img src={post.image} alt={post.title} className="w-full max-h-[450px] object-cover rounded-xl mb-8 shadow-lg hover:scale-105 transition-transform duration-300" />
 
-        <div className="prose prose-lg max-w-none 
-                        prose-p:text-neon-green/90 
-                        prose-headings:text-neon-yellow 
-                        prose-strong:text-white 
-                        prose-a:text-neon-pink prose-a:underline hover:prose-a:text-white
-                        prose-blockquote:text-neon-orange/90 prose-blockquote:border-neon-orange/50">
+        <div className="prose prose-lg max-w-none text-lepre-text-primary">
           {post.content.map((block, index) => {
-            if (block.type === 'paragraph') return <p key={index}>{block.text}</p>;
+            if (block.type === 'paragraph') {
+              return <p key={index} className="text-lepre-text-secondary leading-relaxed mb-6">{block.text}</p>;
+            }
             if (block.type === 'heading') {
               const HeadingTag = `h${block.level}`;
-              return <HeadingTag key={index}>{block.text}</HeadingTag>;
+              return React.createElement(HeadingTag, {
+                key: index,
+                className: "text-lepre-text-primary font-bold mb-4 mt-8"
+              }, block.text);
             }
             return null;
           })}
         </div>
 
-        <div className="flex items-center mt-10 pt-6 border-t border-neon-pink/20">
-          <User className="w-12 h-12 text-neon-green/50 mr-4" />
+        <div className="flex items-center mt-10 pt-6 border-t border-lepre-green/20">
+          <div className="w-12 h-12 bg-lepre-green/20 rounded-full flex items-center justify-center mr-4">
+            <User className="w-6 h-6 text-lepre-green" />
+          </div>
           <div>
-            <p className="font-semibold text-neon-green">{post.author}</p>
-            <p className="text-sm text-neon-green/70">{post.authorTitle}</p>
+            <p className="font-semibold text-lepre-text-primary">{post.author}</p>
+            <p className="text-sm text-lepre-text-secondary">{post.authorTitle}</p>
           </div>
         </div>
       </article>
@@ -533,7 +533,7 @@ function Navbar() {
         <header className="sticky top-0 z-50 backdrop-blur-sm bg-lepre-white/90 border-b border-lepre-mid-gray shadow-lepre-soft-shadow">
             <nav className="container mx-auto flex justify-end items-center px-8 py-4 space-x-10 text-lg font-bold">
                 <a href="/#domains" className="text-lepre-text-primary hover:text-lepre-gold transition-colors duration-300">Domains</a>
-                {/* <Link to="/blog" className="text-lepre-text-primary hover:text-lepre-gold transition-colors duration-300">Blog</Link> */}
+                <Link to="/blog" className="text-lepre-text-primary hover:text-lepre-gold transition-colors duration-300">Blog</Link>
                 {/* <a href="/#contact" className="text-lepre-text-primary hover:text-lepre-gold transition-colors duration-300">Contact</a> */}
             </nav>
         </header>
@@ -5388,63 +5388,33 @@ export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
 
 /* ==== FILE: src\data\blogData.js ==== */
 
-// src/data/blogData.js
-
 export const blogPosts = [
     {
         id: 1,
-        title: 'The Ultimate Guide to Choosing the Perfect Domain Name for Your Business',
-        category: 'Domain Strategy',
-        date: 'January 15, 2024',
-        readTime: '5 min read',
+        title: 'Welcome to SitePot - Your Gateway to Premium Domains',
+        category: 'Announcement',
+        date: 'September 18, 2025',
+        readTime: '3 min read',
         author: 'Ram Larsson',
-        authorTitle: 'Domain Expert',
-        image: 'https://via.placeholder.com/400x250/AEC6CF/FFFFFF?text=Domain+Strategy',
+        authorTitle: 'Founder & Domain Expert',
+        image: 'https://via.placeholder.com/400x250/4ADE80/FFFFFF?text=SitePot+Launch',
         content: [
-            { type: 'paragraph', text: 'Choosing the right domain name is one of the most critical decisions you\'ll make for your business. A great domain name serves as your digital identity, influences your brand perception, and can significantly impact your online success.' },
-            { type: 'heading', level: 3, text: 'What Makes a Great Domain Name?' },
-            { type: 'paragraph', text: 'A premium domain name should be short, memorable, and easy to spell. The best domains are typically between 6-14 characters long and avoid hyphens, numbers, or complex spellings that could confuse potential visitors.' },
-            { type: 'heading', level: 3, text: 'The Power of .com Extensions' },
-            { type: 'paragraph', text: 'While there are hundreds of domain extensions available today, .com remains the gold standard. Studies show that .com domains are trusted more by consumers and are easier to remember. When someone hears your business name, they\'ll instinctively type ".com" at the end.' },
-            { type: 'heading', level: 3, text: 'Brandability vs. Keywords' },
-            { type: 'paragraph', text: 'Modern SEO practices favor brandable domains over exact-match keyword domains. A unique, brandable name like "Google" or "Amazon" becomes synonymous with your business and is easier to trademark and protect.' },
-            { type: 'heading', level: 3, text: 'Investment Potential' },
-            { type: 'paragraph', text: 'Premium domains are digital real estate. Just as location matters in physical real estate, a great domain name can appreciate in value over time. Many businesses have paid millions for the perfect domain because they understand its long-term value.' },
-            { type: 'heading', level: 3, text: 'Making the Right Choice' },
-            { type: 'paragraph', text: 'When evaluating domains, consider how they sound when spoken aloud, how they look in marketing materials, and whether they can grow with your business. The perfect domain should work for your current needs while leaving room for future expansion.' }
-        ]
-    },
-    {
-        id: 2,
-        title: 'Why Premium .com Domains Are Worth the Investment',
-        category: 'Investment',
-        date: 'January 10, 2024',
-        readTime: '4 min read',
-        author: 'Ram Larsson',
-        authorTitle: 'Domain Expert',
-        image: 'https://via.placeholder.com/400x250/FFD700/FFFFFF?text=Domain+Investment',
-        content: [
-            { type: 'paragraph', text: 'In today\'s digital economy, your domain name is more than just a web address—it\'s a valuable business asset that can drive traffic, build trust, and increase your company\'s valuation.' },
-            { type: 'heading', level: 3, text: 'Trust and Credibility' },
-            { type: 'paragraph', text: 'Premium .com domains instantly convey professionalism and legitimacy. Customers are more likely to trust and engage with businesses that have authoritative domain names. This trust translates directly into higher conversion rates and customer retention.' }
-        ]
-    },
-    {
-        id: 3,
-        title: 'Domain Name Trends in 2024: What Entrepreneurs Need to Know',
-        category: 'Trends',
-        date: 'January 5, 2024',
-        readTime: '6 min read',
-        author: 'Ram Larsson',
-        authorTitle: 'Domain Expert',
-        image: 'https://via.placeholder.com/400x250/ADD8E6/FFFFFF?text=Domain+Trends',
-        content: [
-            { type: 'paragraph', text: 'The domain name landscape continues to evolve, and staying current with trends can give your business a competitive edge. Here are the key trends shaping domain strategy in 2024.' },
-            { type: 'heading', level: 3, text: 'Short and Sweet Wins' },
-            { type: 'paragraph', text: 'The trend toward shorter domain names continues to accelerate. Businesses are realizing that brevity leads to better recall, easier typing, and stronger brand impact. Domains under 8 characters are particularly valuable.' }
+            { type: 'paragraph', text: 'Today marks an exciting milestone - the official launch of SitePot, your new destination for discovering and acquiring premium domain names that can transform your business.' },
+            { type: 'heading', level: 3, text: 'What is SitePot?' },
+            { type: 'paragraph', text: 'SitePot is a carefully curated marketplace where entrepreneurs, startups, and established businesses can find high-quality domain names that make a real impact. We believe that the right domain name is like finding the perfect pot of gold - it can be the foundation of your digital success.' },
+            { type: 'heading', level: 3, text: 'Why We Started SitePot' },
+            { type: 'paragraph', text: 'After years in the domain industry, I noticed too many great businesses struggling with weak domain names - long, complicated URLs that customers couldn\'t remember or trust. Meanwhile, premium domains that could solve these problems were scattered across different platforms, making them hard to discover.' },
+            { type: 'heading', level: 3, text: 'Our Curation Process' },
+            { type: 'paragraph', text: 'Every domain in our collection is handpicked based on brandability, memorability, and commercial potential. We focus on short, clean .com domains that work across industries and have the flexibility to grow with your business.' },
+            { type: 'heading', level: 3, text: 'What Makes Us Different' },
+            { type: 'paragraph', text: 'Unlike domain auction sites with thousands of mediocre options, SitePot offers a boutique experience. Each domain comes with detailed insights about its potential applications, target industries, and investment value. We\'re not just selling domains - we\'re helping you find the digital identity that will define your brand.' },
+            { type: 'heading', level: 3, text: 'Looking Ahead' },
+            { type: 'paragraph', text: 'This is just the beginning. Over the coming months, we\'ll be adding more premium domains to our collection and sharing insights about domain strategy, digital branding, and online business growth. Our goal is to become your trusted partner in building a powerful online presence.' },
+            { type: 'paragraph', text: 'Welcome to SitePot - where great domains find great businesses.' }
         ]
     }
 ];
+
 
 /* ==== FILE: src\data\domains.js ==== */
 
