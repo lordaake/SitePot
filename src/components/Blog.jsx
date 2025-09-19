@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../data/blogData';
@@ -6,6 +7,11 @@ import { blogPosts } from '../data/blogData';
 function Blog() {
   return (
     <div className="container mx-auto px-4 py-12 bg-lepre-white min-h-screen text-lepre-text-primary">
+      <Helmet>
+        <title>SitePot Blog</title>
+        <meta name="description" content="Explore curated domain listings, news, and updates on SitePot Blog." />
+      </Helmet>
+
       <section className="text-center mb-12 sm:mb-16">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-lepre-green mb-4">
           SitePot Blog

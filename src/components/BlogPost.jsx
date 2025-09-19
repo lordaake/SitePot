@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, Clock, ArrowLeft, Frown, X } from 'lucide-react';
 import { blogPosts } from '../data/blogData';
@@ -6,7 +7,6 @@ import { blogPosts } from '../data/blogData';
 function BlogPost() {
   const { id } = useParams();
   const post = blogPosts.find(p => p.id === parseInt(id));
-
   const [activeSource, setActiveSource] = useState(null);
 
   const renderFormattedText = (text) => {
@@ -60,6 +60,10 @@ function BlogPost() {
 
   return (
     <div className="container mx-auto px-4 py-12 bg-lepre-white min-h-screen">
+      <Helmet>
+        <title>{post.title} - SitePot Blog</title>
+        <meta name="description" content={post.summary || `Read about ${post.title} on SitePot Blog.`} />
+      </Helmet>
       <article className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 border border-lepre-green/20">
         <div className="mb-8">
           <Link to="/blog" className="inline-flex items-center text-lepre-green hover:text-lepre-gold font-bold transition-colors duration-300">

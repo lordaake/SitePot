@@ -1,7 +1,6 @@
-// src/App.jsx
-
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -40,11 +39,17 @@ function App() {
   }
 
   const HomePage = () => (
-    <div className="container mx-auto px-4">
-      <Hero />
-      <DomainList />
-      {/* <ContactSection /> */}
-    </div>
+    <>
+      <Helmet>
+        <title>SitePot - A pot of highly potential domains</title>
+        <meta name="description" content="Find highly potential .com domains to buy and grow your online presence." />
+      </Helmet>
+      <div className="container mx-auto px-4">
+        <Hero />
+        <DomainList />
+        {/* <ContactSection /> */}
+      </div>
+    </>
   );
 
   return (
@@ -64,4 +69,3 @@ function App() {
 }
 
 export default App;
-
