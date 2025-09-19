@@ -664,5 +664,11 @@ export const domains = [
     "category": ["Travel & Hospitality", "Health & Wellness", "Entertainment & Media"],
     "description": "Platform for discovering and booking cozy weekend escapes, micro-vacations, and petite nature retreats like tiny cabins, glamping spots, and short hiking adventures for relaxation and rejuvenation.",
     "forSale": true
+  },
+  {
+    "name": "PromoDate.com",
+    "category": ["E-commerce & Retail", "Technology & Software", "Business & Professional"],
+    "description": "A platform for creating and managing promotional events, deals, or coupons with seamless online booking and marketing tools for businesses.",
+    "forSale": true
   }
 ];
