@@ -36,16 +36,16 @@ export const domains = [
     forSale: true
   },
   {
-    name: "agentodyssey.com",
-    category: ["Business & Professional", "Travel & Hospitality"],
-    description: "An engaging domain for a travel agency specializing in epic adventures, a real estate firm for unique property journeys, or a talent agency guiding creative careers, emphasizing exploration and discovery.",
-    forSale: true
+    "name": "agentodyssey.com",
+    "category": ["Technology & Software", "Business & Professional", "Services & Consulting"],
+    "description": "A platform for developing advanced AI agents for complex digital journeys. Ideal for autonomous systems that navigate vast datasets, learn over time, and complete intricate problem-solving quests.",
+    "forSale": true
   },
   {
-    name: "agentvanguard.com",
-    category: ["Business & Professional", "Services & Consulting"],
-    description: "A pioneering domain for a recruitment agency leading in talent acquisition, a security services provider at the forefront of protection, or a consulting firm driving innovative business strategies.",
-    forSale: true
+    "name": "agentvanguard.com",
+    "category": ["Technology & Software", "Business & Professional", "Services & Consulting"],
+    "description": "Develop pioneering AI agents that lead the charge in innovation. A brand for cutting-edge autonomous systems in cybersecurity, market analysis, or advanced business intelligence solutions.",
+    "forSale": true
   },
   {
     name: "align.ink",
