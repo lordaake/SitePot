@@ -6,15 +6,14 @@ import { blogPosts } from '../data/blogData';
 function Blog() {
   return (
     <div className="container mx-auto px-4 py-12 bg-lepre-white min-h-screen text-lepre-text-primary">
-      <section className="text-center mb-16">
-        <h2 className="text-5xl font-extrabold text-lepre-green mb-4">
+      <section className="text-center mb-12 sm:mb-16">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-lepre-green mb-4">
           SitePot Blog
         </h2>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
         {blogPosts.map(post => {
-          // Robustly find the first paragraph for the preview text
           const firstParagraph = post.content.find(block => block.type === 'paragraph');
           const previewText = firstParagraph
             ? `${firstParagraph.text.substring(0, 120)}...`
@@ -28,13 +27,13 @@ function Blog() {
               <img
                 src={post.image}
                 alt={post.title}
-                className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="p-6 flex flex-col flex-grow">
                 <span className="bg-lepre-green/20 text-lepre-green text-xs font-semibold px-3 py-1 rounded-full mb-4 self-start tracking-wide">
                   {post.category}
                 </span>
-                <h3 className="text-2xl font-bold text-lepre-text-primary mb-3 flex-grow leading-tight group-hover:text-lepre-green transition-colors duration-300">
+                <h3 className="text-xl sm:text-2xl font-bold text-lepre-text-primary mb-3 flex-grow leading-tight group-hover:text-lepre-green transition-colors duration-300">
                   {post.title}
                 </h3>
                 <div className="flex items-center text-lepre-text-tertiary text-sm mt-auto mb-4 space-x-4">
