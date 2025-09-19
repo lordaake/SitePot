@@ -24,7 +24,9 @@ function DomainList() {
 
     return (
         <section id="domains" className="py-16 bg-lepre-light-gray rounded-lg shadow-lepre-soft-shadow md:p-8 mt-8">
-            <h2 className="text-4xl font-bold text text-black mb-8 border-b-2 border-lepre-green inline-block pb-2">Explore Our Collection</h2>
+            <h2 className="text-4xl font-bold text-black mb-8 border-b-2 border-lepre-green pb-2 text-center md:text-left">
+                Explore Our Collection
+            </h2>
             <div className="flex flex-col sm:flex-row gap-6 mb-8 items-center justify-between">
                 <div className="relative w-full sm:w-2/3">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lepre-green w-6 h-6" />
@@ -44,14 +46,20 @@ function DomainList() {
                         onChange={(e) => setSelectedCategory(e.target.value)}
                     >
                         <option value="All Categories">All Categories</option>
-                        {categories.map(category => (<option key={category} value={category}>{category}</option>))}
+                        {categories.map((category) => (
+                            <option key={category} value={category}>
+                                {category}
+                            </option>
+                        ))}
                     </select>
                 </div>
             </div>
             <p className="text-lepre-text-secondary mb-8 font-bold tracking-wider">{filteredDomains.length} domains found</p>
             {filteredDomains.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredDomains.map(domain => (<DomainCard key={domain.name} domain={domain} />))}
+                    {filteredDomains.map((domain) => (
+                        <DomainCard key={domain.name} domain={domain} />
+                    ))}
                 </div>
             ) : (
                 <div className="text-center py-16">
@@ -59,6 +67,7 @@ function DomainList() {
                 </div>
             )}
         </section>
+
     );
 }
 

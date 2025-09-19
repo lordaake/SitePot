@@ -668,7 +668,7 @@ export const domains = [
   {
     "name": "PromoDate.com",
     "category": ["E-commerce & Retail", "Technology & Software", "Business & Professional"],
-    "description": "A platform for creating and managing promotional events, deals, or coupons with seamless online booking and marketing tools for businesses.",
+    "description": "Showcase limited-time deals and exclusive event promotions, connect users with date-specific offers, or inspire unique social experiences tied to special occasions. Ideal for innovative marketing campaigns and curated promotional calendars, combining the power of timely retail discounts with engaging customer interactions.",
     "forSale": true
   }
 ];

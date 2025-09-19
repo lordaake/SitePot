@@ -6,8 +6,9 @@ function Hero() {
     return (
         <section
             id="hero"
-            className="mt-12 py-16 px-6 md:px-12 relative flex flex-col items-center bg-gradient-to-br from-lepre-light-gray via-lepre-white to-lepre-light-gray rounded-3xl shadow-lg border border-lepre-gold-dark max-w-5xl mx-auto"
+            className="mt-12 py-16 px-6 md:px-12 relative flex flex-col items-center bg-gradient-to-br from-lepre-light-gray via-lepre-white to-lepre-light-gray rounded-3xl shadow-lg border border-lepre-gold-dark max-w-8xl mx-auto"
         >
+
             {/* Golden Pot with Rainbow Glow */}
             <div className="relative h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 rounded-full bg-gradient-to-tr from-yellow-400 via-yellow-300 to-yellow-500 shadow-[0_0_25px_rgba(255,215,0,0.6)] animate-lepre-float flex items-center justify-center overflow-visible">
                 {/* Rainbow Glow Ring */}
