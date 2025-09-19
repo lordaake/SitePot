@@ -1,11 +1,54 @@
-import React from 'react'; // <-- **THIS LINE WAS MISSING**
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, User, Clock, ArrowLeft, Frown } from 'lucide-react';
+import { Calendar, User, Clock, ArrowLeft, Frown, X } from 'lucide-react';
 import { blogPosts } from '../data/blogData';
 
 function BlogPost() {
   const { id } = useParams();
   const post = blogPosts.find(p => p.id === parseInt(id));
+
+  const [activeSource, setActiveSource] = useState(null);
+
+  // --- NEW & IMPROVED: Renders both sources and markdown bolding ---
+  const renderFormattedText = (text) => {
+    if (!text) return null;
+
+    // Regex to find either a source citation [#] or markdown bold **text**
+    const regex = /(\[\d+\])|(\*\*.*?\*\*)/g;
+    const parts = text.split(regex).filter(Boolean); // Split and remove empty strings
+
+    return parts.map((part, index) => {
+      // Check for source citation: [1]
+      const sourceMatch = part.match(/^\[(\d+)\]$/);
+      if (sourceMatch) {
+        const sourceId = parseInt(sourceMatch[1], 10);
+        const source = post.sources?.find(s => s.id === sourceId);
+        if (source) {
+          return (
+            <button
+              key={index}
+              className="inline-block align-baseline mx-1 px-1.5 py-0.5 bg-lepre-green/20 text-lepre-green font-bold text-xs rounded-md hover:bg-lepre-green/30 transition-all duration-200"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveSource(source);
+              }}
+            >
+              {sourceId}
+            </button>
+          );
+        }
+      }
+
+      // Check for markdown bold: **text**
+      const boldMatch = part.match(/^\*\*(.*?)\*\*$/);
+      if (boldMatch) {
+        return <strong key={index}>{boldMatch[1]}</strong>;
+      }
+
+      // Otherwise, it's plain text
+      return part;
+    });
+  };
 
   if (!post) {
     return (
@@ -54,18 +97,33 @@ function BlogPost() {
 
         <div className="prose prose-lg max-w-none text-lepre-text-primary">
           {post.content.map((block, index) => {
-            if (block.type === 'paragraph') {
-              return <p key={index} className="text-lepre-text-secondary leading-relaxed mb-6">{block.text}</p>;
+            switch (block.type) {
+              case 'paragraph':
+                return <p key={index} className="text-lepre-text-secondary leading-relaxed mb-6">{renderFormattedText(block.text)}</p>;
+
+              case 'heading':
+                const HeadingTag = `h${block.level}`;
+                return React.createElement(HeadingTag, {
+                  key: index,
+                  className: "text-lepre-text-primary font-bold mb-4 mt-8"
+                }, renderFormattedText(block.text));
+
+              case 'list':
+                return (
+                  <ul key={index} className="list-disc pl-6 space-y-3 mb-6">
+                    {block.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="text-lepre-text-secondary leading-relaxed">{renderFormattedText(item)}</li>
+                    ))}
+                  </ul>
+                );
+
+              case 'special':
+                const styleClass = block.style === 'bold' ? 'font-bold' : 'italic';
+                return <p key={index} className={`${styleClass} text-lepre-text-primary my-6`}>{renderFormattedText(block.text)}</p>;
+
+              default:
+                return null;
             }
-            if (block.type === 'heading') {
-              const HeadingTag = `h${block.level}`;
-              // Using React.createElement requires the React library to be imported
-              return React.createElement(HeadingTag, {
-                key: index,
-                className: "text-lepre-text-primary font-bold mb-4 mt-8"
-              }, block.text);
-            }
-            return null;
           })}
         </div>
 
@@ -79,6 +137,29 @@ function BlogPost() {
           </div>
         </div>
       </article>
+
+      {/* --- Source Modal using Tailwind CSS --- */}
+      {activeSource && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          onClick={() => setActiveSource(null)}
+        >
+          <div
+            className="bg-white rounded-xl shadow-2xl p-6 m-4 max-w-lg w-full relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setActiveSource(null)}
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-800 transition-colors"
+              aria-label="Close source"
+            >
+              <X size={24} />
+            </button>
+            <h4 className="text-lg font-bold text-lepre-green mb-2">Source</h4>
+            <p className="text-base text-lepre-text-secondary">{activeSource.text}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
