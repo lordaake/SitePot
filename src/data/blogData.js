@@ -1,7 +1,7 @@
 export const blogPosts = [
     {
         id: 1,
-        title: 'SitePot Has Launched - Discover Premium Domains',
+        title: 'SitePot Has Launched - Find Your Domain Here',
         category: 'Announcement',
         date: 'September 18, 2025',
         readTime: '2 min read',
