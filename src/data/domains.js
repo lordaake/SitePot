@@ -658,5 +658,11 @@ export const domains = [
     "category": ["Technology & Software", "Entertainment & Media", "Miscellaneous"],
     "description": "Perfect for a software tool that manages database fields or a gaming portal dedicated to adventure and strategy titles, providing resources and community features for developers and players alike.",
     "forSale": true
+  },
+  {
+    "name": "smallgetaways.com",
+    "category": ["Travel & Hospitality", "Health & Wellness", "Entertainment & Media"],
+    "description": "Platform for discovering and booking cozy weekend escapes, micro-vacations, and petite nature retreats like tiny cabins, glamping spots, and short hiking adventures for relaxation and rejuvenation.",
+    "forSale": true
   }
 ];
