@@ -1,7 +1,7 @@
 export const blogPosts = [
     {
         id: 1,
-        title: 'SitePot Has Launched - Search the Golden Pot and find your domain',
+        title: 'SitePot Has Launched - Search the Golden Pot and Find your Domain',
         category: 'Announcement',
         date: 'September 18, 2025',
         readTime: '2 min read',
