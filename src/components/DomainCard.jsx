@@ -25,7 +25,7 @@ function DomainCard({ domain }) {
                 </p>
             </div>
             <div className="flex items-center justify-between mt-3">
-                <span className="text-lepre-gold font-bold flex items-center">
+                <span className="text-black font-bold flex items-center">
                     <Sparkles className="w-5 h-5 mr-2 text-lepre-green" /> For Sale
                 </span>
                 <a
