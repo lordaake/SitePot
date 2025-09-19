@@ -8,11 +8,8 @@ function Blog() {
     <div className="container mx-auto px-4 py-12 bg-lepre-white min-h-screen text-lepre-text-primary">
       <section className="text-center mb-16">
         <h2 className="text-5xl font-extrabold text-lepre-green mb-4">
-          Domain Insights
+          SitePot Blog
         </h2>
-        <p className="text-xl text-lepre-text-secondary max-w-3xl mx-auto leading-relaxed">
-          Expert strategies, trends, and tutorials for choosing, investing in, and maximizing the value of premium domains.
-        </p>
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
