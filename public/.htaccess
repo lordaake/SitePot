@@ -1,9 +1,93 @@
 <IfModule mod_rewrite.c>
+  # Turn on the rewrite engine
   RewriteEngine On
+
+  # Set the base directory for rewrites
   RewriteBase /
-  RewriteRule ^index\.html$ - [L]
+
+  # Redirect non-www to www (optional, uncomment to use)
+  # RewriteCond %{HTTP_HOST} !^www\. [NC]
+  # RewriteRule ^(.*)$ http://www.yourdomain.com/$1 [L,R=301]
+
+  # Redirect HTTP to HTTPS (recommended for security)
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # --- Single-Page Application (SPA) Routing Rules ---
+  # Do not apply to existing files, directories, or symbolic links
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
+
+  # For all other requests, route them to index.html
   RewriteRule . /index.html [L]
 </IfModule>
+
+<IfModule mod_expires.c>
+  # Turn on the expires module
+  ExpiresActive On
+
+  # --- Caching Rules ---
+  # Set default cache time to 1 month
+  ExpiresDefault "access plus 1 month"
+
+  # Force browsers to revalidate HTML files on every visit
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # Cache CSS, JavaScript, and other text-based files for 1 month
+  # Note: This is most effective when filenames are versioned (e.g., style.a1b2c3d4.css)
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+
+  # Cache media files for 1 year (as they change infrequently)
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+
+  # Cache web fonts for 1 year
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+  ExpiresByType application/x-font-ttf "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # --- Advanced Cache-Control Headers ---
+  # For HTML documents, tell browsers and proxies not to cache
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # For versioned static assets, allow aggressive caching
+  # This rule assumes files contain a hash (e.g., main.a1b2c3d4.js)
+  <FilesMatch "\.[0-9a-f]{8,}\.(css|js|jpg|png|gif|svg|webp)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # --- Security Headers (Highly Recommended) ---
+  # Prevent Clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Prevent MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Enable XSS protection
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Control what information is sent with requests
+  Header always set Referrer-Policy "no-referrer-when-downgrade"
+</IfModule>
+
+# --- Other Configurations ---
+# Prevent directory browsing
+Options -Indexes
+
+# Define custom error pages (optional)
+# ErrorDocument 404 /404.html
+# ErrorDocument 500 /500.html
