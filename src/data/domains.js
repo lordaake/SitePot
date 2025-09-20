@@ -670,5 +670,12 @@ export const domains = [
     "category": ["E-commerce & Retail", "Technology & Software", "Business & Professional"],
     "description": "Showcase limited-time deals and exclusive event promotions, connect users with date-specific offers, or inspire unique social experiences tied to special occasions. Ideal for innovative marketing campaigns and curated promotional calendars, combining the power of timely retail discounts with engaging customer interactions.",
     "forSale": true
+  },
+  {
+    "name": "buyfortune.com",
+    "category": ["E-commerce & Retail", "Finance & Investment", "Food & Beverage"],
+    "description": "Launch an e-commerce site selling custom fortune cookies with personalized messages, or create a platform for buying investment guides and tools to grow personal wealth through smart financial strategies and business insights.",
+    "forSale": true
   }
+
 ];
