@@ -1,54 +1,70 @@
-// src/App.jsx
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import router components
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import DomainList from './components/DomainList';
 import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import BlogPage from './pages/BlogPage'; // Import the new Blog page
-import './App.css';
+import Blog from './components/Blog';
+import BlogPost from './components/BlogPost';
+import ContactSection from './components/ContactSection';
 
-function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedMode = localStorage.getItem('darkMode');
-      return savedMode ? JSON.parse(savedMode) : window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return true;
-  });
+// This component helps to scroll to the top on route changes
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-  const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
-  };
+  return null;
+}
+
+function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-lepre-white">
+        <div className="text-2xl font-bold text-lepre-text-primary animate-pulse">
+          Gathering the luck...
+        </div>
+      </div>
+    );
+  }
+
+  const HomePage = () => (
+    <>
+      <Helmet>
+        <title>SitePot - A pot of highly potential domains</title>
+        <meta name="description" content="Find highly potential .com domains to buy and grow your online presence." />
+      </Helmet>
+      <div className="container mx-auto px-4">
+        <Hero />
+        <DomainList />
+        {/* <ContactSection /> */}
+      </div>
+    </>
+  );
 
   return (
-    // Wrap the entire app in BrowserRouter to enable routing
-    <BrowserRouter>
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 flex flex-col">
-        {/* Navbar and Footer are outside Routes to appear on all pages */}
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-
-        <main className="flex-grow">
-          <Routes>
-            {/* Route for the Home Page */}
-            <Route path="/" element={<HomePage />} />
-            {/* Route for the new Blog Page */}
-            <Route path="/blog" element={<BlogPage />} />
-          </Routes>
-        </main>
-
-        <Footer darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      </div>
-    </BrowserRouter>
+    <div className="flex flex-col min-h-screen bg-lepre-white text-lepre-text-primary">
+      <ScrollToTop />
+      <Navbar />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
