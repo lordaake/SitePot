@@ -23,7 +23,7 @@ function Hero() {
                 {/* Perfect-fit Golden ring around logo */}
                 <div className="h-full w-full rounded-full p-2 bg-gradient-to-tr from-yellow-300 via-yellow-400 to-yellow-500 shadow-lg shadow-yellow-400/60 flex items-center justify-center">
                     <img
-                        src="/Hero.png"
+                        src="/Hero4.png"
                         alt="Hero"
                         className="h-full w-full select-none rounded-full object-contain"
                         draggable={false}
