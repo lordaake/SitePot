@@ -678,5 +678,17 @@ export const domains = [
     "category": ["E-commerce & Retail", "Finance & Investment", "Food & Beverage"],
     "description": "Launch an e-commerce site selling custom fortune cookies with personalized messages, or create a platform for buying investment guides and tools to grow personal wealth through smart financial strategies and business insights.",
     "forSale": true
+  },
+  {
+    "name": "worldsheds.com",
+    "category": ["E-commerce & Retail", "Home & Garden", "Business & Professional"],
+    "description": "It could be a platform supporting global humanitarian causes and raising awareness, while it could also work as a site offering a marketplace for sheds and outdoor storage solutions worldwide.",
+    "forSale": true
+  },
+  {
+    "name": "swiftlisting.com",
+    "category": ["Technology & Software", "Services & Consulting", "Business & Professional"],
+    "description": "Works well as a SaaS platform offering fast, efficient listing services with features like advanced search, subscription management, real-time updates, and scalable API integrations.",
+    "forSale": true
   }
 ];
