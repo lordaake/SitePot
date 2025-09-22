@@ -107,11 +107,35 @@ function BlogPost() {
               case 'special':
                 const styleClass = block.style === 'bold' ? 'font-bold' : 'italic';
                 return <p key={index} className={`${styleClass} text-lepre-text-primary my-6`}>{renderFormattedText(block.text)}</p>;
+              case 'image':
+                return (
+                  <figure key={index} className="mb-6">
+                    <img src={block.src} alt={block.caption || 'Image'} className="w-full rounded-xl" />
+                    {block.caption && <figcaption className="mt-2 text-sm text-lepre-text-secondary">{block.caption}</figcaption>}
+                  </figure>
+                );
               default:
                 return null;
             }
           })}
         </div>
+
+        {post.sources && post.sources.length > 0 && (
+          <section className="mt-12 border-t border-lepre-green/20 pt-6">
+            <h3 className="text-lepre-green font-bold text-lg mb-4">Sources</h3>
+            <div className="flex flex-wrap gap-2">
+              {post.sources.map(source => (
+                <button
+                  key={source.id}
+                  onClick={() => setActiveSource(source)}
+                  className="inline-block px-3 py-1 bg-lepre-green/20 text-lepre-green font-semibold text-sm rounded-md hover:bg-lepre-green/30 transition-colors"
+                >
+                  [{source.id}]
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className="flex items-center mt-10 pt-6 border-t border-lepre-green/20">
           <div className="w-12 h-12 bg-lepre-green/20 rounded-full flex items-center justify-center mr-4">
