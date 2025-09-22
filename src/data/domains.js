@@ -690,5 +690,11 @@ export const domains = [
     "category": ["Technology & Software", "Services & Consulting", "Business & Professional"],
     "description": "Works well as a SaaS platform offering fast, efficient listing services with features like advanced search, subscription management, real-time updates, and scalable API integrations.",
     "forSale": true
+  },
+  {
+    "name": "moreoriginal.com",
+    "category": ["Entertainment & Media", "Art & Design", "Technology & Software"],
+    "description": "Sell exclusive original artworks, market unique music tracks, offer creative writing and design services, or promote innovative tech products emphasizing originality.",
+    "forSale": true
   }
 ];

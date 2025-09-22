@@ -186,10 +186,6 @@ export const blogPosts = [
                 ]
             },
             {
-                type: 'paragraph',
-                text: 'I\'ve watched businesses flourish because their domain gave them the freedom to evolve without starting over.'
-            },
-            {
                 type: 'heading',
                 level: 2,
                 text: 'Riding the AI Wave in Business'
