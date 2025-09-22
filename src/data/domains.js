@@ -696,5 +696,11 @@ export const domains = [
     "category": ["Entertainment & Media", "Art & Design", "Technology & Software"],
     "description": "Sell exclusive original artworks, market unique music tracks, offer creative writing and design services, or promote innovative tech products emphasizing originality.",
     "forSale": true
+  },
+  {
+    "name": "digfile.com",
+    "category": ["Technology & Software", "Business & Professional", "E-commerce & Retail"],
+    "description": "Could be used as a digital marketplace or platform facilitating access to digital files, assets, or templates for creators and businesses.",
+    "forSale": true
   }
 ];
