@@ -165,7 +165,7 @@ export const blogPosts = [
             },
             {
                 type: 'image',
-                src: '/images/blog/blo3_illu.jpg',
+                src: '/images/blog/blog_3_3.png',
                 caption: 'Visualizing the domain registration process with diverse domain extensions.'
             },
             {
