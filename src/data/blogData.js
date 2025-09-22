@@ -208,7 +208,7 @@ export const blogPosts = [
             },
             {
                 type: 'image',
-                src: '/images/blog/blog3_illu2.jpg',
+                src: '/images/blog/blog_3_2.png',
                 caption: 'An entrepreneur collaborating with AI technology in a modern office.'
             },
             {
