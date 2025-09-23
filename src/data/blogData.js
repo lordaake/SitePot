@@ -264,5 +264,119 @@ export const blogPosts = [
                 text: 'Your domain: Where great ideas become unstoppable businesses.'
             }
         ]
+    },
+    {
+        id: 4,
+        title: 'How to Build an AI Transcriber with DeepInfra, Paddle, and Supabase',
+        category: 'Tech Tutorial',
+        date: 'September 23, 2025',
+        readTime: '9 min read',
+        author: 'Ram Larsson',
+        authorTitle: 'Founder & Domain Expert',
+        image: '/images/blog/blog_4.png',
+        content: [
+            {
+                type: 'paragraph',
+                text: 'Ever thought about creating your own website that turns audio into text? It sounds complicated, but with the right tools, it’s more achievable than you think. This guide will walk you through building a simple yet powerful AI transcription service, even if you’re just starting out. We’ll use a powerful trio of services: **DeepInfra** for the AI magic, **Paddle** for easy global payments, and **Supabase** to manage everything behind the scenes.'
+            },
+            {
+                type: 'heading',
+                level: 2,
+                text: 'The Three Key Ingredients'
+            },
+            {
+                type: 'paragraph',
+                text: 'Think of building this website like assembling a team. Each member has a special skill, and together they create something amazing. Here are our star players:'
+            },
+            {
+                type: 'list',
+                items: [
+                    '**DeepInfra (The AI Brain):** This service does the heavy lifting of converting speech to text. It gives you access to powerful AI models without you needing to be an AI expert.',
+                    '**Paddle (The Global Cashier):** This service handles all the tricky parts of getting paid, like taxes and different currencies, so you can sell your service to anyone in the world.',
+                    '**Supabase (The Digital Hub):** This is the backbone of your site. It manages user accounts, stores the audio files, and keeps track of all your transcription jobs.'
+                ]
+            },
+            {
+                type: 'heading',
+                level: 2,
+                text: 'DeepInfra: Your On-Demand AI Expert'
+            },
+            {
+                type: 'paragraph',
+                text: 'At the heart of our transcriber is the AI that actually listens to the audio and writes out the words. Instead of building this complex technology from scratch, we use DeepInfra. It’s like having a world-class AI expert on call. You simply send it an audio file through its API (a way for programs to talk to each other), and it sends you back the finished text.'
+            },
+            {
+                type: 'paragraph',
+                text: 'DeepInfra offers access to top-tier models like OpenAI\'s **Whisper**, which is incredibly accurate with many languages and accents. The best part? You only pay for what you use, so you can start small without a big upfront investment. It’s built to grow with you, handling more and more transcriptions as your site becomes popular.'
+            },
+            {
+                type: 'heading',
+                level: 2,
+                text: 'Paddle: Selling Made Simple'
+            },
+            {
+                type: 'paragraph',
+                text: 'Once you have a great service, you need a way to sell it. This is often where things get complicated with international taxes (like VAT), different payment methods, and fraud prevention. **Paddle** solves all of this by acting as your "Merchant of Record." In simple terms, they take on the legal responsibility for each sale.'
+            },
+            {
+                type: 'paragraph',
+                text: 'When a customer pays, they are technically paying Paddle, who then pays you. This means Paddle automatically handles calculating and remitting sales tax, offering customers local payment options, and fighting fraud. It frees you up to focus on improving your product instead of becoming a tax expert.'
+            },
+            {
+                type: 'heading',
+                level: 2,
+                text: 'Supabase: The All-in-One Backend'
+            },
+            {
+                type: 'paragraph',
+                text: 'Every website needs a "backend" to manage its data. This is where **Supabase** shines. It’s an open-source platform that combines several essential tools into one easy-to-use package, acting as the central nervous system for our transcriber site.'
+            },
+            {
+                type: 'list',
+                items: [
+                    '**Database:** A place to store information, like a list of your users and the status of each transcription job (e.g., "pending," "completed").',
+                    '**Authentication:** A secure way to handle user sign-ups and logins, so people have their own private accounts.',
+                    '**Storage:** A place to safely store the audio files that users upload.'
+                ]
+            },
+            {
+                type: 'paragraph',
+                text: 'Using Supabase simplifies development because you don’t have to set up and connect all these different services yourself. It all works together seamlessly right out of the box.'
+            },
+            {
+                type: 'heading',
+                level: 2,
+                text: 'How It All Works Together: A Step-by-Step Flow'
+            },
+            {
+                type: 'paragraph',
+                text: 'So, how do these three services team up? Here’s a simple walkthrough of what happens when a user visits your site:'
+            },
+            {
+                type: 'list',
+                items: [
+                    '**1. Sign Up & Upload:** A new user creates an account on your site (managed by **Supabase Authentication**). They then upload an audio file they want transcribed. This file is securely saved to **Supabase Storage**.',
+                    '**2. Job Tracking:** As soon as the file is uploaded, a new entry is made in your **Supabase Database** to track the job. Its status is marked as "processing."',
+                    '**3. AI Transcription:** Your backend (which can be a **Supabase Function**) is automatically triggered. It grabs the audio file and sends it to **DeepInfra** for transcription.',
+                    '**4. Get the Result:** Once DeepInfra is done, it sends the finished text back. Your backend saves this transcript into the Supabase Database and updates the job status to "completed."',
+                    '**5. Payment & Access:** The user is notified that their transcript is ready. To view or download the full text, they complete a simple payment through a **Paddle** checkout window. Once payment is confirmed, they get full access to their transcript.'
+                ]
+            },
+            {
+                type: 'heading',
+                level: 2,
+                text: 'Ready to Build?'
+            },
+            {
+                type: 'paragraph',
+                text: 'By combining the AI power of DeepInfra, the simplicity of Paddle, and the robust backend of Supabase, you can create a professional-grade transcription service without the massive overhead or complexity. This "stack" lets you launch faster, manage your business easier, and scale effortlessly.'
+            },
+            {
+                type: 'special',
+                style: 'bold',
+                text: 'The future of digital products is about combining smart tools. Now it\'s your turn to create something amazing!'
+            }
+        ]
     }
+
 ];

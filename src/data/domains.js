@@ -104,10 +104,10 @@ export const domains = [
     forSale: true
   },
   {
-    name: "Cuuka.com",
-    category: ["Food & Beverage", "E-commerce & Retail"],
-    description: "A catchy domain for a cooking app, recipe sharing community, or food delivery service, inspiring home chefs with easy-to-follow guides, ingredient kits, and culinary inspiration from around the world.",
-    forSale: true
+    "name": "Cuuka.com",
+    "category": ["Entertainment & Media", "Non-profit & Community"],
+    "description": "A bold domain perfect for a storytelling platform, social community, or media outlet where uncensored voices, real talk, and dramatic narratives come alive. Inspired by the Kikuyu meaning 'to slander' or 'to gossip,' Cuuka.com invites users to share authentic stories, spark conversations, and uncover truths behind the headlines.",
+    "forSale": true
   },
   {
     name: "DairyDiets.com",
