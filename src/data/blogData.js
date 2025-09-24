@@ -5,7 +5,7 @@ export const blogPosts = [
         category: 'Announcement',
         date: 'September 18, 2025',
         readTime: '2 min read',
-        author: 'Ram Larsson',
+        author: 'Tord Larsson',
         authorTitle: 'Founder & Domain Expert',
         image: '/generated-image.png',
         content: [
@@ -22,7 +22,7 @@ export const blogPosts = [
         category: 'Industry Insights',
         date: 'September 19, 2025',
         readTime: '15 min read',
-        author: 'Ram Larsson',
+        author: 'Tord Larsson',
         authorTitle: 'Founder & Domain Expert',
         image: '/generated-image2.png',
         content: [
@@ -117,7 +117,7 @@ export const blogPosts = [
         category: 'Digital Strategy',
         date: 'September 22, 2025',
         readTime: '12 min read',
-        author: 'Ram Larsson',
+        author: 'Tord Larsson',
         authorTitle: 'Founder & Domain Expert',
         image: '/images/blog/blog_3.png',
         content: [
@@ -271,7 +271,7 @@ export const blogPosts = [
         category: 'Tech Tutorial',
         date: 'September 23, 2025',
         readTime: '9 min read',
-        author: 'Ram Larsson',
+        author: 'Tord Larsson',
         authorTitle: 'Founder & Domain Expert',
         image: '/images/blog/blog_4.png',
         content: [
