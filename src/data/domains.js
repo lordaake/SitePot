@@ -702,5 +702,15 @@ export const domains = [
     "category": ["Technology & Software", "Business & Professional", "E-commerce & Retail"],
     "description": "Could be used as a digital marketplace or platform facilitating access to digital files, assets, or templates for creators and businesses.",
     "forSale": true
+  },
+  {
+    "name": "whytraffic.com",
+    "category": [
+      "Technology & Software",
+      "Services & Consulting",
+      "Business & Professional"
+    ],
+    "description": "Launch a data analytics platform revealing the story behind traffic jams. Offer insights to urban planners and logistics firms for smarter, more efficient transportation systems.",
+    "forSale": true
   }
 ];
