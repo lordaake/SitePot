@@ -707,10 +707,10 @@ export const domains = [
     "name": "whytraffic.com",
     "category": [
       "Technology & Software",
-      "Services & Consulting",
-      "Business & Professional"
+      "Business & Professional",
+      "E-commerce & Retail"
     ],
-    "description": "Launch a data analytics platform revealing the story behind traffic jams. Offer insights to urban planners and logistics firms for smarter, more efficient transportation systems.",
+    "description": "SaaS analytics for real-time web, app, or network traffic insights. Help businesses track user behavior, optimize marketing, and improve site performance with advanced reporting.",
     "forSale": true
   }
 ];
