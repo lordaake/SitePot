@@ -712,5 +712,16 @@ export const domains = [
     ],
     "description": "SaaS analytics for real-time web, app, or network traffic insights. Help businesses track user behavior, optimize marketing, and improve site performance with advanced reporting.",
     "forSale": true
-  }
+  },
+  {
+  "name": "getrealized.com",
+  "category": [
+    "Finance & Investment",
+    "Business & Professional",
+    "Health & Wellness",
+    "Technology & Software"
+  ],
+  "description": "A hub for turning goals into reality. Perfect for a financial analytics tool, a personal development platform, or a project management service that delivers tangible results.",
+  "forSale": true
+}
 ];
